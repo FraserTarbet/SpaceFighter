@@ -9,5 +9,9 @@ func _ready():
 func _physics_process(_delta):
     if control_linear_velocity != null:
         apply_force(control_linear_velocity)
+        thrust_vector = control_linear_velocity
+    else:
+        thrust_vector = Vector2.ZERO
+
     if control_angular_velocity != null:
         apply_torque(control_angular_velocity)

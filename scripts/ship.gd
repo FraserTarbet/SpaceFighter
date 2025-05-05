@@ -1,3 +1,5 @@
+class_name Ship
+
 extends RigidBody2D
 
-class_name Ship
+var thrust_vector: Vector2 = Vector2.ZERO

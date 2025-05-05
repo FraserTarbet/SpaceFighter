@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb88iniaulghh"]
+[gd_scene load_steps=8 format=3 uid="uid://cb88iniaulghh"]
 
 [ext_resource type="Texture2D" uid="uid://b0rrcq1jw58xw" path="res://sprites/Test_Ship.png" id="1_7bgw1"]
 [ext_resource type="Script" path="res://scripts/control.gd" id="1_wpel8"]
 [ext_resource type="Texture2D" uid="uid://qcsue8h8bjv2" path="res://sprites/Test_Ship_n.png" id="2_rkhi5"]
 [ext_resource type="Script" path="res://scripts/ship_player.gd" id="2_vrcui"]
+[ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="5_w1gdp"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vcehf"]
 diffuse_texture = ExtResource("1_7bgw1")
 normal_texture = ExtResource("2_rkhi5")
+
+[sub_resource type="Gradient" id="Gradient_6iolm"]
+offsets = PackedFloat32Array(0, 0.986667)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Root" type="Node2D"]
 
@@ -36,5 +41,25 @@ polygon = PackedVector2Array(17, -64, 64, -17, 64, 64, 25, 59, -25, 59, -64, 64,
 texture = SubResource("CanvasTexture_vcehf")
 
 [node name="Camera2D" type="Camera2D" parent="Ship"]
+enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
+
+[node name="EngineParticles" type="CPUParticles2D" parent="Ship"]
+position = Vector2(1, 61)
+amount = 30
+lifetime = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(20, 1)
+direction = Vector2(0, 1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_6iolm")
+script = ExtResource("5_w1gdp")
+thrust_vector = Vector2(0, -1)
