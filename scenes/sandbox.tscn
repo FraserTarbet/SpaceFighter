@@ -23,7 +23,10 @@ color = Color(1, 1, 0.627451, 1)
 height = 0.5
 
 [node name="Ship" type="RigidBody2D" parent="."]
+mass = 0.5
+inertia = 10.0
 linear_damp = 0.75
+angular_damp = 0.75
 script = ExtResource("2_vrcui")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship"]
@@ -31,3 +34,7 @@ polygon = PackedVector2Array(17, -64, 64, -17, 64, 64, 25, 59, -25, 59, -64, 64,
 
 [node name="Sprite2D" type="Sprite2D" parent="Ship"]
 texture = SubResource("CanvasTexture_vcehf")
+
+[node name="Camera2D" type="Camera2D" parent="Ship"]
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
