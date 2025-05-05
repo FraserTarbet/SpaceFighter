@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb88iniaulghh"]
+
+[ext_resource type="Texture2D" uid="uid://b0rrcq1jw58xw" path="res://sprites/Test_Ship.png" id="1_7bgw1"]
+[ext_resource type="Script" path="res://scripts/control.gd" id="1_wpel8"]
+[ext_resource type="Texture2D" uid="uid://qcsue8h8bjv2" path="res://sprites/Test_Ship_n.png" id="2_rkhi5"]
+[ext_resource type="Script" path="res://scripts/ship_player.gd" id="2_vrcui"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vcehf"]
+diffuse_texture = ExtResource("1_7bgw1")
+normal_texture = ExtResource("2_rkhi5")
+
+[node name="Root" type="Node2D"]
+
+[node name="Control" type="Node2D" parent="."]
+script = ExtResource("1_wpel8")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = 0.785398
+color = Color(1, 1, 0.627451, 1)
+height = 0.5
+
+[node name="Ship" type="RigidBody2D" parent="."]
+linear_damp = 0.75
+script = ExtResource("2_vrcui")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship"]
+polygon = PackedVector2Array(17, -64, 64, -17, 64, 64, 25, 59, -25, 59, -64, 64, -64, -17, -17, -64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ship"]
+texture = SubResource("CanvasTexture_vcehf")
