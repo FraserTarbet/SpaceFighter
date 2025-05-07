@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb88iniaulghh"]
+[gd_scene load_steps=15 format=3 uid="uid://cb88iniaulghh"]
 
 [ext_resource type="Texture2D" uid="uid://b0rrcq1jw58xw" path="res://sprites/Test_Ship.png" id="1_7bgw1"]
-[ext_resource type="Script" path="res://scripts/control.gd" id="1_wpel8"]
+[ext_resource type="Script" path="res://scripts/Control.gd" id="1_wpel8"]
 [ext_resource type="Texture2D" uid="uid://qcsue8h8bjv2" path="res://sprites/Test_Ship_n.png" id="2_rkhi5"]
-[ext_resource type="Script" path="res://scripts/ship_player.gd" id="2_vrcui"]
+[ext_resource type="Script" path="res://scripts/ShipPlayer.gd" id="2_vrcui"]
+[ext_resource type="Script" path="res://scripts/AmbientParallax.gd" id="3_x16bm"]
+[ext_resource type="Texture2D" uid="uid://baoyag8lqkqsw" path="res://sprites/ambient/dust_speck.png" id="4_rmevt"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="5_7pil6"]
+[ext_resource type="Texture2D" uid="uid://c7uin5s570yqf" path="res://sprites/ambient/cloud_1.png" id="5_8x8k0"]
 [ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="5_w1gdp"]
+[ext_resource type="Texture2D" uid="uid://dscinakgm3mfw" path="res://icon.svg" id="7_jpoq1"]
+[ext_resource type="Script" path="res://scripts/SpriteParallax.gd" id="8_klaid"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vcehf"]
 diffuse_texture = ExtResource("1_7bgw1")
@@ -13,6 +19,9 @@ normal_texture = ExtResource("2_rkhi5")
 [sub_resource type="Gradient" id="Gradient_6iolm"]
 offsets = PackedFloat32Array(0, 0.986667)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0krvn"]
+diffuse_texture = ExtResource("7_jpoq1")
 
 [node name="Root" type="Node2D"]
 
@@ -24,8 +33,36 @@ color = Color(0, 0, 0, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 rotation = 0.785398
-color = Color(1, 1, 0.627451, 1)
+color = Color(1, 1, 0.839216, 1)
 height = 0.5
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_speed = 2.0
+script = ExtResource("5_7pil6")
+
+[node name="Specks" type="Node2D" parent="Camera2D"]
+script = ExtResource("3_x16bm")
+texture = ExtResource("4_rmevt")
+area = 2000
+frequency = 200
+scale_min = 0.6
+scale_max = 0.8
+opacity_min = 0.2
+opacity_max = 0.4
+min_depth = -0.5
+max_depth = 1.0
+
+[node name="Cloud1" type="Node2D" parent="Camera2D"]
+script = ExtResource("3_x16bm")
+texture = ExtResource("5_8x8k0")
+area = 4000
+frequency = 50
+scale_min = 2.0
+scale_max = 5.0
+opacity_min = 0.1
+opacity_max = 0.2
+min_depth = -0.5
+max_depth = 1.0
 
 [node name="Ship" type="RigidBody2D" parent="."]
 mass = 0.5
@@ -39,11 +76,6 @@ polygon = PackedVector2Array(17, -64, 64, -17, 64, 64, 25, 59, -25, 59, -64, 64,
 
 [node name="Sprite2D" type="Sprite2D" parent="Ship"]
 texture = SubResource("CanvasTexture_vcehf")
-
-[node name="Camera2D" type="Camera2D" parent="Ship"]
-enabled = false
-position_smoothing_enabled = true
-position_smoothing_speed = 2.0
 
 [node name="EngineParticles" type="CPUParticles2D" parent="Ship"]
 position = Vector2(1, 61)
@@ -63,3 +95,8 @@ scale_amount_max = 10.0
 color_ramp = SubResource("Gradient_6iolm")
 script = ExtResource("5_w1gdp")
 thrust_vector = Vector2(0, -1)
+
+[node name="SpriteParallax" type="Sprite2D" parent="Ship"]
+visible = false
+texture = SubResource("CanvasTexture_0krvn")
+script = ExtResource("8_klaid")
