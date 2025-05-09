@@ -16,6 +16,42 @@ var max_linear_velocity = 500
 var max_angular_velocity = 90
 
 func _input(event):
+    if event is InputEventScreenDrag or event is InputEventScreenTouch:
+        touch(event)
+
+func _process(_delta):
+
+    # Ship movement
+    var x = 0.0
+    var y = 0.0
+    var angular = 0.0
+
+    if Input.is_action_pressed("move_left"):
+        x = -max_linear_velocity
+    elif Input.is_action_pressed("move_right"):
+        x = max_linear_velocity
+
+    if Input.is_action_pressed("move_up"):
+        y = -max_linear_velocity
+    elif Input.is_action_pressed("move_down"):
+        y = max_linear_velocity
+
+    if Input.is_action_pressed("rotate_anticlockwise"):
+        angular = -max_angular_velocity
+    elif Input.is_action_pressed("rotate_clockwise"):
+        angular = max_angular_velocity
+
+    Globals.player_ship.control_linear_velocity = Vector2(x, y)
+    Globals.player_ship.control_angular_velocity = angular
+
+    # Zoom
+    if Input.is_action_pressed("zoom_in"):
+        Globals.camera.target_zoom = Globals.camera.target_zoom * 1.1
+    elif Input.is_action_pressed("zoom_out"):
+        Globals.camera.target_zoom = Globals.camera.target_zoom * 0.9
+
+
+func touch(event):
     if event is InputEventScreenTouch:
         if event.pressed and len(touch_velocities) < 2 and not touch_velocities.has(event.index):
             # Check if close proximity to existing touch index
