@@ -1,27 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cb88iniaulghh"]
+[gd_scene load_steps=8 format=3 uid="uid://cb88iniaulghh"]
 
-[ext_resource type="Texture2D" uid="uid://b0rrcq1jw58xw" path="res://sprites/Test_Ship.png" id="1_7bgw1"]
 [ext_resource type="Script" path="res://scripts/Control.gd" id="1_wpel8"]
-[ext_resource type="Texture2D" uid="uid://qcsue8h8bjv2" path="res://sprites/Test_Ship_n.png" id="2_rkhi5"]
-[ext_resource type="Script" path="res://scripts/ShipPlayer.gd" id="2_vrcui"]
 [ext_resource type="Script" path="res://scripts/AmbientParallax.gd" id="3_x16bm"]
 [ext_resource type="Texture2D" uid="uid://baoyag8lqkqsw" path="res://sprites/ambient/dust_speck.png" id="4_rmevt"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="5_7pil6"]
 [ext_resource type="Texture2D" uid="uid://c7uin5s570yqf" path="res://sprites/ambient/cloud_1.png" id="5_8x8k0"]
-[ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="5_w1gdp"]
-[ext_resource type="Texture2D" uid="uid://dscinakgm3mfw" path="res://icon.svg" id="7_jpoq1"]
-[ext_resource type="Script" path="res://scripts/SpriteParallax.gd" id="8_klaid"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_vcehf"]
-diffuse_texture = ExtResource("1_7bgw1")
-normal_texture = ExtResource("2_rkhi5")
-
-[sub_resource type="Gradient" id="Gradient_6iolm"]
-offsets = PackedFloat32Array(0, 0.986667)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_0krvn"]
-diffuse_texture = ExtResource("7_jpoq1")
+[ext_resource type="PackedScene" uid="uid://cspbypp6uwqf2" path="res://scenes/test_ship.tscn" id="6_hxsk8"]
+[ext_resource type="PackedScene" uid="uid://bfrffo2rdpiw2" path="res://scenes/enemy_ship.tscn" id="7_mql4t"]
 
 [node name="Root" type="Node2D"]
 
@@ -64,39 +49,7 @@ opacity_max = 0.2
 min_depth = -0.5
 max_depth = 1.0
 
-[node name="Ship" type="RigidBody2D" parent="."]
-mass = 0.5
-inertia = 10.0
-linear_damp = 0.75
-angular_damp = 0.75
-script = ExtResource("2_vrcui")
+[node name="PlayerShip" parent="." instance=ExtResource("6_hxsk8")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship"]
-polygon = PackedVector2Array(17, -64, 64, -17, 64, 64, 25, 59, -25, 59, -64, 64, -64, -17, -17, -64)
-
-[node name="Sprite2D" type="Sprite2D" parent="Ship"]
-texture = SubResource("CanvasTexture_vcehf")
-
-[node name="EngineParticles" type="CPUParticles2D" parent="Ship"]
-position = Vector2(1, 61)
-amount = 30
-lifetime = 0.1
-emission_shape = 3
-emission_rect_extents = Vector2(20, 1)
-direction = Vector2(0, 1)
-spread = 10.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 200.0
-initial_velocity_max = 300.0
-damping_min = 100.0
-damping_max = 100.0
-scale_amount_min = 5.0
-scale_amount_max = 10.0
-color_ramp = SubResource("Gradient_6iolm")
-script = ExtResource("5_w1gdp")
-thrust_vector = Vector2(0, -1)
-
-[node name="SpriteParallax" type="Sprite2D" parent="Ship"]
-visible = false
-texture = SubResource("CanvasTexture_0krvn")
-script = ExtResource("8_klaid")
+[node name="EnemyShip" parent="." instance=ExtResource("7_mql4t")]
+position = Vector2(362, 124)
