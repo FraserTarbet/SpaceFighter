@@ -12,8 +12,13 @@ var last_angle = null
 var last_time = null
 var last_zoom = null
 var angular_velocity_samples = []
-var max_linear_velocity = 500
-var max_angular_velocity = 90
+var max_linear_velocity
+var max_angular_velocity
+
+func _ready():
+    await get_tree().process_frame
+    max_linear_velocity = Globals.player_ship.max_control_linear_velocity
+    max_angular_velocity = Globals.player_ship.max_control_angular_velocity
 
 func _input(event):
     if event is InputEventScreenDrag or event is InputEventScreenTouch:

@@ -4,6 +4,8 @@ extends RigidBody2D
 
 @export var max_linear_velocity: Vector2 = Vector2(1000, 1000)
 @export var max_angular_velocity: float = 2.0
+@export var max_control_linear_velocity: float = 500.0
+@export var max_control_angular_velocity: float = 90.0
 
 var control_linear_velocity = Vector2.ZERO
 var control_angular_velocity = 0.0
