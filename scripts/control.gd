@@ -10,6 +10,7 @@ var angle_delta_to_torque = 5000
 var rotation_node = null
 var last_angle = null
 var last_time = null
+var last_zoom = null
 var angular_velocity_samples = []
 var max_linear_velocity = 500
 var max_angular_velocity = 90
@@ -28,6 +29,7 @@ func _input(event):
             rotation_node = null
             last_angle = null
             last_time = null
+            last_zoom = null
             Globals.player_ship.control_linear_velocity = null
             Globals.player_ship.control_angular_velocity = null
 
@@ -66,3 +68,13 @@ func _input(event):
             rotation_node = null
             last_angle = null
             last_time = null
+
+        # Zoom
+        if len(touch_positions) == 2:
+            var zoom = (touch_positions.values()[0] - touch_positions.values()[1]).length()
+            if last_zoom != null:
+                var delta = zoom / last_zoom
+                Globals.camera.target_zoom = Globals.camera.target_zoom * delta
+            last_zoom = zoom
+        else:
+            last_zoom = null
