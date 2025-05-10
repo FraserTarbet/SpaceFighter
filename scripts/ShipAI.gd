@@ -5,11 +5,12 @@ extends Ship
 @export var target_position: Vector2
 @export var target_ship: Ship
 
+@export var attack_timer:float = 5.0
 @export var avoidance_timer: float = 3.0
 
 var rotation_target: Vector2
 var dead_zone_position = 100.0
-var dead_zone_angle = 0.25
+var dead_zone_angle = PI / 12.0
 
 var state: String
 var state_timer: float = 0.0
@@ -31,6 +32,9 @@ var rng = RandomNumberGenerator.new()
 func _process(delta):
 
     rotation_target = target_position if not target_ship else target_ship.position
+
+    if state == 'attack':
+        update_attack_position()
 
     if target_position:
         move_to_target_position()
@@ -56,7 +60,7 @@ func move_to_target_position():
 
 func rotate_to_target():
     var target_vector = rotation_target - position
-    var angle_to_target = (target_vector.angle() + deg_to_rad(90)) - rotation
+    var angle_to_target = Vector2.UP.rotated(rotation).angle_to(target_vector)
     var move_vector = target_position - position
 
     if abs(angle_to_target) < dead_zone_angle or (rotation_target == target_position and move_vector.length() < dead_zone_position):
@@ -72,6 +76,8 @@ func rotate_to_target():
 func avoid_collision(other_ship: Ship):
     if not avoided_ships.has(other_ship):
         avoided_ships.append(other_ship)
+        if state == 'attack':
+            ShipManager.remove_attack_tracking(self)
         state = 'avoid_collision'
         state_timer = avoidance_timer
 
@@ -91,3 +97,18 @@ func avoid_collision(other_ship: Ship):
 func reset_state():
     state = 'default'
     avoided_ships.clear()
+
+    attack()
+
+func attack():
+    ShipManager.remove_attack_tracking(self)
+    var new_target = ShipManager.get_nearest_target(self)
+    if new_target != null:
+        target_ship = new_target
+        state = 'attack'
+        state_timer = attack_timer
+        ShipManager.add_attack_tracking(self, target_ship)
+        ShipManager.set_attack_position(self, target_ship)
+        
+func update_attack_position():
+    target_position = ShipManager.get_attack_position(self, target_ship)
