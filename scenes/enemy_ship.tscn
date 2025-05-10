@@ -19,6 +19,12 @@ inertia = 10.0
 linear_damp = 0.75
 angular_damp = 0.75
 script = ExtResource("1_g4yng")
+target_position = null
+is_enemy = true
+max_linear_velocity = null
+max_angular_velocity = null
+max_control_linear_velocity = null
+max_control_angular_velocity = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -58, 45, 62, -46, 62)
