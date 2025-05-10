@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb88iniaulghh"]
+[gd_scene load_steps=9 format=3 uid="uid://cb88iniaulghh"]
 
+[ext_resource type="Script" path="res://scripts/DebugObjects.gd" id="1_3j23q"]
 [ext_resource type="Script" path="res://scripts/Control.gd" id="1_wpel8"]
 [ext_resource type="Script" path="res://scripts/AmbientParallax.gd" id="3_x16bm"]
 [ext_resource type="Texture2D" uid="uid://baoyag8lqkqsw" path="res://sprites/ambient/dust_speck.png" id="4_rmevt"]
@@ -9,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bfrffo2rdpiw2" path="res://scenes/enemy_ship.tscn" id="7_mql4t"]
 
 [node name="Root" type="Node2D"]
+
+[node name="DebugObjects" type="Node2D" parent="."]
+script = ExtResource("1_3j23q")
 
 [node name="Control" type="Node2D" parent="."]
 script = ExtResource("1_wpel8")
@@ -54,7 +58,7 @@ max_depth = 1.0
 [node name="EnemyShip" parent="." instance=ExtResource("7_mql4t")]
 position = Vector2(300, 100)
 target_position = Vector2(500, -250)
-max_linear_velocity = null
-max_angular_velocity = null
-max_control_linear_velocity = null
-max_control_angular_velocity = null
+max_linear_velocity = Vector2(1000, 1000)
+max_angular_velocity = 2.0
+max_control_linear_velocity = 500.0
+max_control_angular_velocity = 90.0

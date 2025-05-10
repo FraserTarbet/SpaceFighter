@@ -17,6 +17,11 @@ var weapon_range = 500.0 # Get this from weapons
 
 func _ready():
     ShipManager.add_ship(self)
+    collision_points = get_node("CollisionPolygon2D").polygon
+    if ShipManager.show_collision_paths:
+        for i in collision_points.size() * 2:
+            Globals.debug_objects.add_collision_line(self)
+
 
 func _physics_process(_delta):
     if control_linear_velocity and linear_velocity.length() < max_linear_velocity.length():
@@ -35,3 +40,16 @@ func get_stopping_distance():
         var t_stop = (mass / linear_damp) * log(1.0 + (linear_damp * linear_velocity.length()) / max_control_linear_velocity)
         var x_stop = (mass / linear_damp) * linear_velocity.length() - (max_control_linear_velocity / linear_damp) * t_stop
         return x_stop
+
+func get_collision_paths(time):
+    var paths = []
+    for i in collision_points.size():
+        var start_point = position + collision_points[i].rotated(rotation)
+        var end_point = start_point + linear_velocity * time
+        paths.append([start_point, end_point])
+
+        # Shape
+        var next_i = (i + 1) % collision_points.size()
+        paths.append([start_point, position + collision_points[next_i].rotated(rotation)])
+
+    return paths

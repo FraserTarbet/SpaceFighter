@@ -5,9 +5,17 @@ extends Ship
 @export var target_position: Vector2
 @export var target_ship: Ship
 
+@export var avoidance_timer: float = 3.0
+
 var rotation_target: Vector2
 var dead_zone_position = 100.0
 var dead_zone_angle = 0.25
+
+var state: String
+var state_timer: float = 0.0
+var avoided_ships = []
+
+var rng = RandomNumberGenerator.new()
 
 # Use manager to scatter enemies around player targets? Give them a target position, move them around intermittently?
 
@@ -20,7 +28,7 @@ var dead_zone_angle = 0.25
 # Simple behaviour, no self-preservation besides collision avoidance
 # Some ships might seek collisions?
 
-func _process(_delta):
+func _process(delta):
 
     rotation_target = target_position if not target_ship else target_ship.position
 
@@ -29,6 +37,10 @@ func _process(_delta):
 
     if rotation_target != null:
         rotate_to_target()
+
+    state_timer = max(state_timer -delta, 0.0)
+    if state_timer == 0.0 and state != 'default':
+        reset_state()
 
 func move_to_target_position():
     var move_vector = target_position - position
@@ -56,3 +68,26 @@ func rotate_to_target():
             control_angular_velocity = max_control_angular_velocity if angle_to_target < 0.0 else -max_control_angular_velocity
         else:
             control_angular_velocity = -max_control_angular_velocity if angle_to_target < 0.0 else max_control_angular_velocity
+
+func avoid_collision(other_ship: Ship):
+    if not avoided_ships.has(other_ship):
+        avoided_ships.append(other_ship)
+        state = 'avoid_collision'
+        state_timer = avoidance_timer
+
+        var avoid_vectors = []
+        for ship in avoided_ships:
+            var vector_away = (position - ship.position)
+            var opposite_velocity = -(other_ship.linear_velocity)
+            avoid_vectors.append(vector_away + opposite_velocity.normalized())
+
+        var average_vector = Vector2.ZERO
+        for v in avoid_vectors:
+            average_vector = average_vector + v
+        average_vector = average_vector.normalized() * rng.randf_range(250, 750)
+
+        target_position = position + average_vector
+
+func reset_state():
+    state = 'default'
+    avoided_ships.clear()
