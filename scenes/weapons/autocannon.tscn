@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc0t8bgcu3226"]
+
+[ext_resource type="Script" path="res://scripts/Weapon.gd" id="1_24whn"]
+[ext_resource type="Texture2D" uid="uid://5s5a14pjbim7" path="res://sprites/weapons/autocannon.png" id="1_x6on7"]
+[ext_resource type="Texture2D" uid="uid://2sjr2o74v80v" path="res://sprites/weapons/autocannon_n.png" id="2_64m68"]
+[ext_resource type="PackedScene" uid="uid://bjimd781q0p0q" path="res://scenes/projectiles/shell.tscn" id="2_w0p27"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ik7js"]
+diffuse_texture = ExtResource("1_x6on7")
+normal_texture = ExtResource("2_64m68")
+
+[node name="Autocannon" type="Node2D"]
+script = ExtResource("1_24whn")
+projectile = ExtResource("2_w0p27")
+projectile_origin = Vector2(0, -20)
+projectile_velocity = 100.0
+projectile_lifetime = 5.0
+cooldown = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = SubResource("CanvasTexture_ik7js")

@@ -27,7 +27,8 @@ func _ready():
         var z = rng.randf_range(min_depth, max_depth)
         sprite.z = z
         sprite.z_index = int(sprite.z * 10)
-        sprite.rotation = PI * rng.randf()
+        # sprite.rotation = PI * rng.randf()
+        sprite.rotation_degrees = rng.randi_range(0, 359)
         sprite.modulate = Color(1, 1, 1, lerpf(opacity_max, opacity_min, z))
         sprite.scale = Vector2(1.0, 1.0) * lerpf(scale_min, scale_max, z)
 

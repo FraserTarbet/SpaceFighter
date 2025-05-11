@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cb88iniaulghh"]
+[gd_scene load_steps=10 format=3 uid="uid://cb88iniaulghh"]
 
 [ext_resource type="Script" path="res://scripts/DebugObjects.gd" id="1_3j23q"]
 [ext_resource type="Script" path="res://scripts/Control.gd" id="1_wpel8"]
+[ext_resource type="Script" path="res://scripts/ProjectileManager.gd" id="3_btjur"]
 [ext_resource type="Script" path="res://scripts/AmbientParallax.gd" id="3_x16bm"]
 [ext_resource type="Texture2D" uid="uid://baoyag8lqkqsw" path="res://sprites/ambient/dust_speck.png" id="4_rmevt"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="5_7pil6"]
@@ -16,6 +17,9 @@ script = ExtResource("1_3j23q")
 
 [node name="Control" type="Node2D" parent="."]
 script = ExtResource("1_wpel8")
+
+[node name="ProjectileManager" type="Node2D" parent="."]
+script = ExtResource("3_btjur")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
@@ -45,8 +49,8 @@ max_depth = 1.0
 [node name="Cloud1" type="Node2D" parent="Camera2D"]
 script = ExtResource("3_x16bm")
 texture = ExtResource("5_8x8k0")
-area = 4000
-frequency = 50
+area = 8000
+frequency = 80
 scale_min = 2.0
 scale_max = 5.0
 opacity_min = 0.1
