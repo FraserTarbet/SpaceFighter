@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb88iniaulghh"]
+[gd_scene load_steps=11 format=3 uid="uid://cb88iniaulghh"]
 
 [ext_resource type="Script" path="res://scripts/DebugObjects.gd" id="1_3j23q"]
 [ext_resource type="Script" path="res://scripts/Control.gd" id="1_wpel8"]
+[ext_resource type="Script" path="res://scripts/SampleManager.gd" id="2_kouu5"]
 [ext_resource type="Script" path="res://scripts/ProjectileManager.gd" id="3_btjur"]
 [ext_resource type="Script" path="res://scripts/AmbientParallax.gd" id="3_x16bm"]
 [ext_resource type="Texture2D" uid="uid://baoyag8lqkqsw" path="res://sprites/ambient/dust_speck.png" id="4_rmevt"]
@@ -14,6 +15,9 @@
 
 [node name="DebugObjects" type="Node2D" parent="."]
 script = ExtResource("1_3j23q")
+
+[node name="SampleManager" type="Node2D" parent="."]
+script = ExtResource("2_kouu5")
 
 [node name="Control" type="Node2D" parent="."]
 script = ExtResource("1_wpel8")

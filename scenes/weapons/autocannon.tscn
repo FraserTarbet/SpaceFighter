@@ -13,9 +13,9 @@ normal_texture = ExtResource("2_64m68")
 script = ExtResource("1_24whn")
 projectile = ExtResource("2_w0p27")
 projectile_origin = Vector2(0, -20)
-projectile_velocity = 100.0
-projectile_lifetime = 5.0
-cooldown = 1.0
+projectile_velocity = 1500.0
+projectile_lifetime = 2.0
+cooldown = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -5)

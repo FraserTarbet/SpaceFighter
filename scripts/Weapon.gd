@@ -14,14 +14,14 @@ extends Node2D
 
 var is_firing: bool = true
 var remaining_cooldown: float = 0.0
-var is_enemy: bool
+var ship: Ship
 
 func _ready():
     var parent: Node2D = get_parent()
-    while not 'is_enemy' in parent:
+    while not parent is Ship:
         parent = parent.get_parent()
         if parent.name == 'Root': break
-    is_enemy = parent.is_enemy
+    ship = parent
 
 func _process(delta):
     if remaining_cooldown <= 0.0:
