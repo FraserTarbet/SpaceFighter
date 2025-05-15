@@ -1,6 +1,6 @@
 extends Node2D
 
-var player_count = 5
+var player_count = 10
 var free_players = []
 var used_players = []
 var sample_banks = {}
@@ -34,7 +34,7 @@ func _ready():
         free_players.append(player)
         add_child(player)
 
-func play_sample_at(sample_bank_name: String, at: Vector2):
+func play_sample_at(sample_bank_name: String, at: Vector2, level: float = 0.0):
     if free_players.size() == 0:
         print("No free sample players")
         return
@@ -43,6 +43,7 @@ func play_sample_at(sample_bank_name: String, at: Vector2):
     var bank = sample_banks[sample_bank_name]
     player.set_stream(bank[sample_increment % bank.size()])
     player.position = at
+    player.volume_db = level
 
     player.pitch_scale = rng.randf_range(1.0 - pitch_mod, 1.0 +pitch_mod)
 

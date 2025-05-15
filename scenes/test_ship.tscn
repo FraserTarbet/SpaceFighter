@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cspbypp6uwqf2"]
+[gd_scene load_steps=10 format=3 uid="uid://cspbypp6uwqf2"]
 
 [ext_resource type="Script" path="res://scripts/ShipPlayer.gd" id="1_0b6d3"]
 [ext_resource type="Texture2D" uid="uid://b0rrcq1jw58xw" path="res://sprites/Test_Ship.png" id="2_k5f15"]
+[ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/explosion.tscn" id="2_nocar"]
 [ext_resource type="Texture2D" uid="uid://qcsue8h8bjv2" path="res://sprites/Test_Ship_n.png" id="3_xu3so"]
 [ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="4_6xwmg"]
 [ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="5_uptdi"]
@@ -23,6 +24,7 @@ inertia = 10.0
 linear_damp = 0.75
 angular_damp = 0.75
 script = ExtResource("1_0b6d3")
+destroy_explosion = ExtResource("2_nocar")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(17, -64, 64, -17, 64, 64, 25, 59, -25, 59, -64, 64, -64, -17, -17, -64)

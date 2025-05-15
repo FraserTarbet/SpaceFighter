@@ -15,6 +15,7 @@ projectile = ExtResource("2_w0p27")
 projectile_origin = Vector2(0, -20)
 projectile_velocity = 1500.0
 projectile_lifetime = 2.0
+projectile_damage = 1.0
 cooldown = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

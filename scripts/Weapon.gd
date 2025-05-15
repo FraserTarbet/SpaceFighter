@@ -17,21 +17,21 @@ var remaining_cooldown: float = 0.0
 var ship: Ship
 
 func _ready():
-    var parent: Node2D = get_parent()
-    while not parent is Ship:
-        parent = parent.get_parent()
-        if parent.name == 'Root': break
-    ship = parent
+	var parent: Node2D = get_parent()
+	while not parent is Ship:
+		parent = parent.get_parent()
+		if parent.name == 'Root': break
+	ship = parent
 
 func _process(delta):
-    if remaining_cooldown <= 0.0:
-        fire()
-    remaining_cooldown -= delta
+	if remaining_cooldown <= 0.0:
+		fire()
+	remaining_cooldown -= delta
 
 func fire():
-    var p = projectile.instantiate()
-    p.weapon = self
-    remaining_cooldown = cooldown
-    Globals.projectile_manager.add_child(p)
-    
-    
+	var p = projectile.instantiate()
+	p.weapon = self
+	remaining_cooldown = cooldown
+	Globals.projectile_manager.add_child(p)
+	
+	

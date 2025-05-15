@@ -13,6 +13,7 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0.00784314, 1, 1, 1, 1, 1, 1, 1, 1, 
 
 [node name="Explosion" type="Node2D"]
 script = ExtResource("1_78q4r")
+sample_bank_name = "explosion"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
@@ -33,5 +34,6 @@ damping_max = 90.0
 color_ramp = SubResource("Gradient_0ni38")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 color = Color(1, 0.866667, 0.454902, 1)
 texture = ExtResource("2_asfuj")
