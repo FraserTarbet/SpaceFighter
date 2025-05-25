@@ -41,7 +41,6 @@ func _physics_process(delta):
 			get_node("CollisionPolygon2D").disabled = true
 			if running_explosions == 0:
 				destroy()
-				print("tyui")
 	else:
 		if control_linear_velocity and linear_velocity.length() < max_linear_velocity.length():
 			apply_force(control_linear_velocity)

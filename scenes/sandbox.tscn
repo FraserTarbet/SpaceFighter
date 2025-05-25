@@ -68,5 +68,5 @@ position = Vector2(-1471, -1386)
 max_angular_velocity = 4.0
 
 [node name="EnemyShip2" parent="." instance=ExtResource("7_mql4t")]
-position = Vector2(-1906, -805)
+position = Vector2(2699, -1573)
 max_angular_velocity = 4.0

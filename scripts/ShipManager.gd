@@ -127,3 +127,23 @@ func get_attack_position(ship: Ship, target: Ship):
 	for attacker_position in ship_attackers[target]:
 		if attacker_position[0] == ship:
 			return target.position + attacker_position[1]
+
+func get_ship_lead_position(ship: Ship, weapon: Weapon):
+	var vector_to_ship = ship.position - weapon.global_position
+	var projectile_time_to_ship = vector_to_ship.length() / weapon.projectile_velocity
+	var ship_lead_position = ship.position + (ship.linear_velocity * projectile_time_to_ship)
+	return ship_lead_position
+
+func get_ships_in_range(weapon: Weapon):
+	var ship_list = friendly_ships if weapon.ship.is_enemy else enemy_ships
+	var ships_in_range = []
+
+	for ship in ship_list:
+		var ship_lead_position = get_ship_lead_position(ship, weapon)
+		var vector_to_ship_lead_position = ship_lead_position - weapon.global_position
+		var required_rotation = Vector2.UP.rotated(weapon.weapon_slot.global_rotation).angle_to(vector_to_ship_lead_position)
+
+		if abs(required_rotation) <= weapon.radius_radians and vector_to_ship_lead_position.length() <= weapon.projectile_range:
+			ships_in_range.append(ship)
+
+	return ships_in_range
