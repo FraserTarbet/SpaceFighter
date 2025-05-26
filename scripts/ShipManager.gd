@@ -130,8 +130,15 @@ func get_attack_position(ship: Ship, target: Ship):
 
 func get_ship_lead_position(ship: Ship, weapon: Weapon):
 	var vector_to_ship = ship.position - weapon.global_position
+
+	# Not sure this works quite right?
+	var direction = (ship.position - weapon.ship.position).normalized()
+	var relative_velocity = ship.linear_velocity - weapon.ship.linear_velocity
+	var approach_velocity = relative_velocity.dot(direction)
+	var travel_time_to_ship = vector_to_ship.length() / approach_velocity
+
 	var projectile_time_to_ship = vector_to_ship.length() / weapon.projectile_velocity
-	var ship_lead_position = ship.position + (ship.linear_velocity * projectile_time_to_ship)
+	var ship_lead_position = ship.position + (ship.linear_velocity * (projectile_time_to_ship + travel_time_to_ship))
 	return ship_lead_position
 
 func get_ships_in_range(weapon: Weapon):
