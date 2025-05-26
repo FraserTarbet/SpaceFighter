@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cspbypp6uwqf2"]
+[gd_scene load_steps=11 format=3 uid="uid://cspbypp6uwqf2"]
 
 [ext_resource type="Script" path="res://scripts/ShipPlayer.gd" id="1_0b6d3"]
 [ext_resource type="Texture2D" uid="uid://b0rrcq1jw58xw" path="res://sprites/Test_Ship.png" id="2_k5f15"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="4_6xwmg"]
 [ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="5_uptdi"]
 [ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="6_ssmlp"]
+[ext_resource type="Script" path="res://scripts/Shield.gd" id="8_y1m2i"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vcehf"]
 diffuse_texture = ExtResource("2_k5f15")
@@ -24,6 +25,7 @@ inertia = 10.0
 linear_damp = 0.75
 angular_damp = 0.75
 script = ExtResource("1_0b6d3")
+health = 100.0
 destroy_explosion = ExtResource("2_nocar")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -60,3 +62,9 @@ script = ExtResource("5_uptdi")
 [node name="WeaponSlot2" type="Node2D" parent="."]
 position = Vector2(40, 0)
 script = ExtResource("5_uptdi")
+
+[node name="Shield" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-23, -72, 22, -72, 76, -18, 76, 77, 0, 68, -74, 77, -75, -27)
+vertex_colors = PackedColorArray(0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0)
+script = ExtResource("8_y1m2i")
+flare_time = 2.0

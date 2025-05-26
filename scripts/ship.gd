@@ -17,6 +17,7 @@ var thrust_vector: Vector2 = Vector2.ZERO
 var is_destroying: bool = false
 
 var collision_points
+var shield: Shield
 var weapon_range = 500.0 # Get this from weapons
 
 
@@ -24,6 +25,7 @@ var weapon_range = 500.0 # Get this from weapons
 func _ready():
 	ShipManager.add_ship(self)
 	collision_points = get_node("CollisionPolygon2D").polygon
+	shield = get_node("Shield")
 	if ShipManager.show_collision_paths:
 		for i in collision_points.size() * 2:
 			Globals.debug_objects.add_collision_line(self)
@@ -73,7 +75,9 @@ func get_collision_paths(time):
 	return paths
 
 func take_damage(projectile: Projectile):
-	health -= projectile.weapon.projectile_damage
+	var remaining_projectile_damage = shield.hit(projectile)
+
+	health -= remaining_projectile_damage
 	if health <= 0.0 and not is_destroying:
 		is_destroying = true
 

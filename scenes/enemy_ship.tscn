@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfrffo2rdpiw2"]
+[gd_scene load_steps=10 format=3 uid="uid://bfrffo2rdpiw2"]
 
 [ext_resource type="Script" path="res://scripts/ShipAI.gd" id="1_g4yng"]
 [ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/explosion.tscn" id="2_1mqkm"]
 [ext_resource type="Texture2D" uid="uid://0gmfwi185wgi" path="res://sprites/Test_Enemy.png" id="2_gmgm4"]
 [ext_resource type="Texture2D" uid="uid://d2anedq1luse1" path="res://sprites/Test_Enemy_n.png" id="3_sqd15"]
 [ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="4_364v7"]
+[ext_resource type="Script" path="res://scripts/Shield.gd" id="6_e1dcj"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vcehf"]
 diffuse_texture = ExtResource("2_gmgm4")
@@ -13,6 +14,10 @@ normal_texture = ExtResource("3_sqd15")
 [sub_resource type="Gradient" id="Gradient_6iolm"]
 offsets = PackedFloat32Array(0, 0.986667)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_lix7g"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0.415686, 0, 1, 1, 0.627451, 1, 1, 0, 1, 1, 1)
 
 [node name="EnemyShip" type="RigidBody2D"]
 collision_layer = 4
@@ -50,3 +55,14 @@ scale_amount_max = 10.0
 color_ramp = SubResource("Gradient_6iolm")
 script = ExtResource("4_364v7")
 thrust_vector = Vector2(0, -1)
+
+[node name="Shield" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -68, 60, 68, -60, 68)
+vertex_colors = PackedColorArray(0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0)
+script = ExtResource("6_e1dcj")
+max_energy = 5.0
+recharge_delay = 3.0
+recharge_speed = 1.0
+flare_time = 0.5
+flare_warmup = 0.1
+gradient = SubResource("Gradient_lix7g")
