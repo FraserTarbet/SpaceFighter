@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cb88iniaulghh"]
+[gd_scene load_steps=12 format=3 uid="uid://cb88iniaulghh"]
 
 [ext_resource type="Script" path="res://scripts/DebugObjects.gd" id="1_3j23q"]
 [ext_resource type="Script" path="res://scripts/Control.gd" id="1_wpel8"]
@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://baoyag8lqkqsw" path="res://sprites/ambient/dust_speck.png" id="4_rmevt"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="5_7pil6"]
 [ext_resource type="Texture2D" uid="uid://c7uin5s570yqf" path="res://sprites/ambient/cloud_1.png" id="5_8x8k0"]
-[ext_resource type="PackedScene" uid="uid://cspbypp6uwqf2" path="res://scenes/test_ship.tscn" id="6_hxsk8"]
-[ext_resource type="PackedScene" uid="uid://bfrffo2rdpiw2" path="res://scenes/enemy_ship.tscn" id="7_mql4t"]
+[ext_resource type="PackedScene" uid="uid://cspbypp6uwqf2" path="res://scenes/ships/test_ship.tscn" id="6_hxsk8"]
+[ext_resource type="PackedScene" uid="uid://bfrffo2rdpiw2" path="res://scenes/ships/enemy_ship.tscn" id="7_mql4t"]
+[ext_resource type="PackedScene" uid="uid://dy6gtec77gdxe" path="res://scenes/ships/test_mothership.tscn" id="11_ieb7y"]
 
 [node name="Root" type="Node2D"]
 
@@ -74,3 +75,6 @@ max_angular_velocity = 4.0
 [node name="EnemyShip3" parent="." instance=ExtResource("7_mql4t")]
 position = Vector2(1348, -1712)
 max_angular_velocity = 4.0
+
+[node name="Mothership" parent="." instance=ExtResource("11_ieb7y")]
+position = Vector2(-1040, 326)

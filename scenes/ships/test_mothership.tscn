@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://dy6gtec77gdxe"]
+
+[ext_resource type="Script" path="res://scripts/ShipAI.gd" id="1_4cqn5"]
+[ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/explosion.tscn" id="2_51ndd"]
+[ext_resource type="Texture2D" uid="uid://bknpmyxgs1wi2" path="res://sprites/ships/Test_Mothership.png" id="3_i0ydb"]
+[ext_resource type="Texture2D" uid="uid://ci34o4jcsdqmw" path="res://sprites/ships/Test_Mothership_n.png" id="4_85qoy"]
+[ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="5_wnxom"]
+[ext_resource type="Script" path="res://scripts/Shield.gd" id="6_34c1r"]
+[ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="7_txsx5"]
+[ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="8_vwo4a"]
+[ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="9_cuf07"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vcehf"]
+diffuse_texture = ExtResource("3_i0ydb")
+normal_texture = ExtResource("4_85qoy")
+
+[sub_resource type="Gradient" id="Gradient_6iolm"]
+offsets = PackedFloat32Array(0, 0.986667)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Mothership" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 7
+mass = 2.0
+inertia = 10.0
+linear_damp = 0.75
+angular_damp = 0.75
+script = ExtResource("1_4cqn5")
+health = 50.0
+max_linear_velocity = Vector2(200, 200)
+max_angular_velocity = 0.25
+destroy_time = 5.0
+destroy_explosion = ExtResource("2_51ndd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -496, 190, -322, 193, 224, 223, 253, 223, 352, 173, 446, -171, 446, -223, 353, -223, 272, -160, 232, -159, 94, -222, 73, -222, -72, -192, -103, -192, -353, -145, -400)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_vcehf")
+
+[node name="EngineParticles" type="CPUParticles2D" parent="."]
+position = Vector2(-116, 440)
+amount = 30
+lifetime = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(20, 1)
+direction = Vector2(0, 1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_6iolm")
+script = ExtResource("5_wnxom")
+thrust_vector = Vector2(0, -1)
+
+[node name="EngineParticles2" type="CPUParticles2D" parent="."]
+position = Vector2(116, 440)
+amount = 30
+lifetime = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(20, 1)
+direction = Vector2(0, 1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_6iolm")
+script = ExtResource("5_wnxom")
+thrust_vector = Vector2(0, -1)
+
+[node name="Shield" type="Polygon2D" parent="."]
+position = Vector2(12, -78)
+polygon = PackedVector2Array(-13, -420, 181, -245, 213, 332, 213, 433, 165, 528, -185, 526, -239, 429, -240, 347, -174, 307, -173, 175, -237, 152, -236, 3, -202, -27, -205, -274, -160, -321)
+vertex_colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("6_34c1r")
+max_energy = 50.0
+recharge_delay = 10.0
+recharge_speed = 5.0
+flare_time = 0.5
+flare_warmup = 0.1
+gradient = ExtResource("7_txsx5")
+
+[node name="WeaponSlot" type="Node2D" parent="."]
+position = Vector2(-140, -320)
+rotation = -1.5708
+script = ExtResource("8_vwo4a")
+
+[node name="Autocannon" parent="WeaponSlot" instance=ExtResource("9_cuf07")]
+
+[node name="WeaponSlot2" type="Node2D" parent="."]
+position = Vector2(-140, -260)
+rotation = -1.5708
+script = ExtResource("8_vwo4a")
+
+[node name="Autocannon" parent="WeaponSlot2" instance=ExtResource("9_cuf07")]
+
+[node name="WeaponSlot3" type="Node2D" parent="."]
+position = Vector2(140, -260)
+rotation = 1.5708
+script = ExtResource("8_vwo4a")
+
+[node name="Autocannon" parent="WeaponSlot3" instance=ExtResource("9_cuf07")]
