@@ -29,7 +29,7 @@ func _ready():
 
 	light = get_node("PointLight2D")
 
-	Globals.sample_manager.play_sample_at(fire_sample_bank_name, position, -6.0)
+	Globals.sample_manager.play_sample_at(fire_sample_bank_name, position, -12.0)
 
 	body_entered.connect(hit)
 
@@ -40,7 +40,7 @@ func _physics_process(delta):
 
 
 func hit(object):
-	Globals.sample_manager.play_sample_at(hit_sample_bank_name, position, -6.0)
+	Globals.sample_manager.play_sample_at(hit_sample_bank_name, position, -18.0)
 
 	var explosion = explosion_scene.instantiate()
 	explosion.size = hit_explosion_size

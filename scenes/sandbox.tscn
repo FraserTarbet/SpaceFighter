@@ -77,4 +77,8 @@ position = Vector2(1348, -1712)
 max_angular_velocity = 4.0
 
 [node name="Mothership" parent="." instance=ExtResource("11_ieb7y")]
-position = Vector2(-1040, 326)
+position = Vector2(-1068, 322)
+collision_layer = 4
+health = 5.0
+is_enemy = true
+destroy_time = 1.0

@@ -57,7 +57,8 @@ func collision_avoidance():
 	for collision in colliding_ships:
 		var lighter_key = 0 if collision[0].mass < collision[1].mass else 1
 		var heavier_key = abs(1 - lighter_key)
-		collision[lighter_key].avoid_collision(collision[heavier_key])
+		if collision[lighter_key] is ShipAI:
+			collision[lighter_key].avoid_collision(collision[heavier_key])
 
 func get_nearest_target(caller_ship: Ship):
 	var ship_list = friendly_ships if caller_ship.is_enemy else enemy_ships
