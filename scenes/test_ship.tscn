@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cspbypp6uwqf2"]
+[gd_scene load_steps=12 format=3 uid="uid://cspbypp6uwqf2"]
 
 [ext_resource type="Script" path="res://scripts/ShipPlayer.gd" id="1_0b6d3"]
 [ext_resource type="Texture2D" uid="uid://b0rrcq1jw58xw" path="res://sprites/Test_Ship.png" id="2_k5f15"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="5_uptdi"]
 [ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="6_ssmlp"]
 [ext_resource type="Script" path="res://scripts/Shield.gd" id="8_y1m2i"]
+[ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="9_65jnc"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vcehf"]
 diffuse_texture = ExtResource("2_k5f15")
@@ -63,8 +64,15 @@ script = ExtResource("5_uptdi")
 position = Vector2(40, 0)
 script = ExtResource("5_uptdi")
 
+[node name="Autocannon2" parent="WeaponSlot2" instance=ExtResource("6_ssmlp")]
+
 [node name="Shield" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(-23, -72, 22, -72, 76, -18, 76, 77, 0, 68, -74, 77, -75, -27)
 vertex_colors = PackedColorArray(0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0)
 script = ExtResource("8_y1m2i")
-flare_time = 2.0
+max_energy = 5.0
+recharge_delay = 3.0
+recharge_speed = 1.0
+flare_time = 1.0
+flare_warmup = 0.1
+gradient = ExtResource("9_65jnc")
