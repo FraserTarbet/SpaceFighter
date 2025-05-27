@@ -67,10 +67,13 @@ func get_nearest_target(caller_ship: Ship):
 	var min_distance = null
 	var min_ship = null
 	for ship in ship_list:
-		var distance = (ship.position - caller_position).length()
-		if min_distance == null or distance < min_distance:
-			min_distance = distance
-			min_ship = ship
+		if ship.is_destroying:
+			continue
+		else:
+			var distance = (ship.position - caller_position).length()
+			if min_distance == null or distance < min_distance:
+				min_distance = distance
+				min_ship = ship
 
 	return min_ship
 

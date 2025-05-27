@@ -39,8 +39,9 @@ func _physics_process(delta):
 		for c in get_children():
 			if c is Explosion: running_explosions += 1
 		if destroy_time <= 0.0:
-			get_node("Sprite2D").modulate = Color(1, 1, 1, 0)
-			get_node("CollisionPolygon2D").disabled = true
+			if not get_node("CollisionPolygon2D").disabled:
+				get_node("CollisionPolygon2D").disabled = true
+				Globals.set_all_canvas_items_alpha(self, 0.0)
 			if running_explosions == 0:
 				destroy()
 	else:

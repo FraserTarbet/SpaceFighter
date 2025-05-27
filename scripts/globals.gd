@@ -7,8 +7,15 @@ var projectile_manager
 var sample_manager
 
 var collision_layer_dict = {
-    'Environment' = 0,
-    'Friendly' = 1,
-    'Enemy' = 2,
-    'Projectile' = 3
+	'Environment' = 0,
+	'Friendly' = 1,
+	'Enemy' = 2,
+	'Projectile' = 3
 }
+
+
+func set_all_canvas_items_alpha(node: Node2D, alpha: float):
+	for child in node.get_children():
+		if child is CanvasItem:
+			child.modulate = Color(1, 1, 1, alpha)
+		set_all_canvas_items_alpha(child, alpha)
