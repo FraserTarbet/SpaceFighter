@@ -86,9 +86,10 @@ func avoid_collision(other_ship: Ship):
 
 		var avoid_vectors = []
 		for ship in avoided_ships:
-			var vector_away = (position - ship.position)
-			var opposite_velocity = -(other_ship.linear_velocity)
-			avoid_vectors.append(vector_away + opposite_velocity.normalized())
+			if is_instance_valid(ship):
+				var vector_away = (position - ship.position)
+				var opposite_velocity = -(other_ship.linear_velocity)
+				avoid_vectors.append(vector_away + opposite_velocity.normalized())
 
 		var average_vector = Vector2.ZERO
 		for v in avoid_vectors:
@@ -114,4 +115,7 @@ func attack():
 		ShipManager.set_attack_position(self, target_ship)
 		
 func update_attack_position():
-	target_position = ShipManager.get_attack_position(self, target_ship)
+	if is_instance_valid(target_ship):
+		target_position = ShipManager.get_attack_position(self, target_ship)
+	else:
+		reset_state()

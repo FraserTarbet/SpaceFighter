@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy6gtec77gdxe"]
+[gd_scene load_steps=13 format=3 uid="uid://dy6gtec77gdxe"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_2vays"]
 [ext_resource type="Script" path="res://scripts/ShipAI.gd" id="1_4cqn5"]
 [ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/explosion.tscn" id="2_51ndd"]
 [ext_resource type="Texture2D" uid="uid://bknpmyxgs1wi2" path="res://sprites/ships/Test_Mothership.png" id="3_i0ydb"]
@@ -21,14 +22,17 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [node name="Mothership" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 7
-mass = 5.0
-inertia = 20.0
+mass = 5000.0
+physics_material_override = ExtResource("1_2vays")
+inertia = 500000.0
 linear_damp = 0.25
 angular_damp = 0.75
 script = ExtResource("1_4cqn5")
 health = 50.0
 max_linear_velocity = Vector2(200, 200)
 max_angular_velocity = 0.25
+max_control_linear_velocity = 50000.0
+max_control_angular_velocity = 100000.0
 destroy_time = 5.0
 destroy_explosion = ExtResource("2_51ndd")
 
