@@ -51,9 +51,9 @@ func _process(_delta):
 
     # Zoom
     if Input.is_action_pressed("zoom_in"):
-        Globals.camera.target_zoom = Globals.camera.target_zoom * 1.1
+        Globals.camera.target_zoom = Globals.camera.target_zoom * 1.05
     elif Input.is_action_pressed("zoom_out"):
-        Globals.camera.target_zoom = Globals.camera.target_zoom * 0.9
+        Globals.camera.target_zoom = Globals.camera.target_zoom * 0.95
 
 
 func touch(event):

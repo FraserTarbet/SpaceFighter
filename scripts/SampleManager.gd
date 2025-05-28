@@ -1,6 +1,6 @@
 extends Node2D
 
-var player_count = 16
+var player_count = 32
 var free_players = []
 var used_players = []
 var sample_banks = {}

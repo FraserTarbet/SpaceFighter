@@ -10,7 +10,7 @@ func _ready():
 func _process(delta):
     # Manually move camera to follow player rather than parenting
     var target = Globals.player_ship.position
-    position = lerp(position, target, 0.5 * delta)
+    position = lerp(position, target, 0.75 * delta)
 
     # Smooth zoom
     target_zoom = clamp(target_zoom, min_zoom, max_zoom)
