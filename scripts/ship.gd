@@ -18,6 +18,7 @@ var is_destroying: bool = false
 
 var collision_points
 var shield: Shield
+var preferred_fire_vector: Vector2
 var weapon_range = 500.0 # Get this from weapons
 
 
@@ -30,6 +31,17 @@ func _ready():
 		for i in collision_points.size() * 2:
 			Globals.debug_objects.add_collision_line(self)
 
+	var weapon_slot_vectors = []
+	for child in get_children():
+		if child is WeaponSlot:
+			weapon_slot_vectors.append(Vector2.UP.rotated(child.rotation))
+	if weapon_slot_vectors.size() == 0:
+		preferred_fire_vector = Vector2.ZERO
+	else:
+		var vector_sum = Vector2.ZERO
+		for vector in weapon_slot_vectors:
+			vector_sum += vector
+		preferred_fire_vector = (vector_sum / weapon_slot_vectors.size()).normalized()
 
 func _physics_process(delta):
 	if is_destroying:

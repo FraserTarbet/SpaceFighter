@@ -23,7 +23,7 @@ collision_layer = 2
 collision_mask = 7
 mass = 5.0
 inertia = 20.0
-linear_damp = 0.75
+linear_damp = 0.25
 angular_damp = 0.75
 script = ExtResource("1_4cqn5")
 health = 50.0
@@ -77,6 +77,7 @@ script = ExtResource("5_wnxom")
 thrust_vector = Vector2(0, -1)
 
 [node name="Shield" type="Polygon2D" parent="."]
+modulate = Color(1, 1, 1, 0.509804)
 position = Vector2(12, -78)
 polygon = PackedVector2Array(-13, -420, 181, -245, 213, 332, 213, 433, 165, 528, -185, 526, -239, 429, -240, 347, -174, 307, -173, 175, -237, 152, -236, 3, -202, -27, -205, -274, -160, -321)
 vertex_colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -108,3 +109,10 @@ rotation = 1.5708
 script = ExtResource("8_vwo4a")
 
 [node name="Autocannon" parent="WeaponSlot3" instance=ExtResource("9_cuf07")]
+
+[node name="WeaponSlot4" type="Node2D" parent="."]
+position = Vector2(-120, 180)
+rotation = -1.5708
+script = ExtResource("8_vwo4a")
+
+[node name="Autocannon" parent="WeaponSlot4" instance=ExtResource("9_cuf07")]

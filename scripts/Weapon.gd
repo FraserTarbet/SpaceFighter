@@ -31,10 +31,13 @@ func _ready():
 	radius_radians = deg_to_rad(radius)
 
 func _process(delta):
-	aim()
-	if remaining_cooldown <= 0.0 and is_firing:
-		fire()
-	remaining_cooldown = max(remaining_cooldown - delta, 0.0)
+	if ship.is_destroying:
+		return
+	else:
+		aim()
+		if remaining_cooldown <= 0.0 and is_firing:
+			fire()
+		remaining_cooldown = max(remaining_cooldown - delta, 0.0)
 
 func aim():
 	var ships_in_range = ShipManager.get_ships_in_range(self)
