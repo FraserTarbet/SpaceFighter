@@ -38,7 +38,8 @@ func _process(_delta):
         for node in get_children():
             node.translate(-camera_position_delta)
             if node.position.length() > area:
-                node.translate(-node.position * 2)
+                #node.translate(-node.position * 2)
+                node.position = -node.position
 
     last_camera_position = Globals.camera.position
 
