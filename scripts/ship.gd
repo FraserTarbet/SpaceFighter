@@ -2,7 +2,7 @@ class_name Ship
 
 extends RigidBody2D
 
-@export var health: float = 1.0
+@export var max_health: float = 1.0
 @export var is_enemy: bool = false
 @export var max_linear_velocity: Vector2 = Vector2(1000, 1000)
 @export var max_angular_velocity: float = 2.0
@@ -11,6 +11,7 @@ extends RigidBody2D
 @export var destroy_time: float = 1.0
 @export var destroy_explosion: PackedScene
 
+var health:float
 var control_linear_velocity = Vector2.ZERO
 var control_angular_velocity = 0.0
 var thrust_vector: Vector2 = Vector2.ZERO
@@ -27,6 +28,7 @@ func _ready():
 	ShipManager.add_ship(self)
 	collision_points = get_node("CollisionPolygon2D").polygon
 	shield = get_node("Shield")
+	health = max_health
 	if ShipManager.show_collision_paths:
 		for i in collision_points.size() * 2:
 			Globals.debug_objects.add_collision_line(self)

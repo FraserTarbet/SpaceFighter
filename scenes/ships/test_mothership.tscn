@@ -28,7 +28,6 @@ inertia = 500000.0
 linear_damp = 0.25
 angular_damp = 0.75
 script = ExtResource("1_4cqn5")
-health = 50.0
 max_linear_velocity = Vector2(200, 200)
 max_angular_velocity = 0.25
 max_control_linear_velocity = 50000.0

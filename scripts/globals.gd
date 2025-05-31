@@ -5,6 +5,7 @@ var player_ship
 var camera
 var projectile_manager
 var sample_manager
+var hud
 
 var collision_layer_dict = {
 	'Environment' = 0,
