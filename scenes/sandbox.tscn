@@ -104,17 +104,14 @@ max_depth = 1.0
 
 [node name="PlayerShip" parent="." instance=ExtResource("6_hxsk8")]
 
-[node name="EnemyShip" parent="." instance=ExtResource("7_mql4t")]
-position = Vector2(-1471, -1386)
-max_angular_velocity = 4.0
-
-[node name="EnemyShip2" parent="." instance=ExtResource("7_mql4t")]
-position = Vector2(2699, -1573)
-max_angular_velocity = 4.0
-
-[node name="EnemyShip3" parent="." instance=ExtResource("7_mql4t")]
-position = Vector2(1348, -1712)
-max_angular_velocity = 4.0
-
 [node name="Mothership" parent="." instance=ExtResource("11_ieb7y")]
 position = Vector2(-925, 232)
+
+[node name="EnemyShip" parent="." instance=ExtResource("7_mql4t")]
+position = Vector2(-1390, -1479)
+
+[node name="EnemyShip2" parent="." instance=ExtResource("7_mql4t")]
+position = Vector2(-857, -1553)
+
+[node name="EnemyShip3" parent="." instance=ExtResource("7_mql4t")]
+position = Vector2(-445, -1623)

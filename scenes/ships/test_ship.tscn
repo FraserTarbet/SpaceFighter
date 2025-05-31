@@ -22,15 +22,17 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [node name="PlayerShip" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 7
-mass = 80.0
 physics_material_override = ExtResource("1_elf8c")
-inertia = 10.0
+inertia = 1.0
+can_sleep = false
+freeze_mode = 1
+custom_integrator = true
+contact_monitor = true
+max_contacts_reported = 1
 linear_damp = 0.75
 angular_damp = 0.75
 script = ExtResource("1_0b6d3")
 max_health = 50.0
-max_control_linear_velocity = 50000.0
-max_control_angular_velocity = 200.0
 destroy_explosion = ExtResource("2_nocar")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

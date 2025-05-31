@@ -22,15 +22,18 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [node name="EnemyShip" type="RigidBody2D"]
 collision_layer = 4
 collision_mask = 7
-mass = 2.0
+mass = 0.8
 physics_material_override = ExtResource("1_yxn34")
-inertia = 10.0
+inertia = 0.8
+can_sleep = false
+custom_integrator = true
+contact_monitor = true
+max_contacts_reported = 1
 linear_damp = 0.75
 angular_damp = 0.75
 script = ExtResource("1_g4yng")
 is_enemy = true
-max_control_linear_velocity = 50000.0
-max_control_angular_velocity = 200.0
+max_control_angular_velocity = 10.0
 destroy_explosion = ExtResource("2_1mqkm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

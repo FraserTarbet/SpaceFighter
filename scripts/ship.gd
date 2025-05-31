@@ -4,18 +4,22 @@ extends RigidBody2D
 
 @export var max_health: float = 1.0
 @export var is_enemy: bool = false
-@export var max_linear_velocity: Vector2 = Vector2(1000, 1000)
-@export var max_angular_velocity: float = 2.0
-@export var max_control_linear_velocity: float = 500.0
-@export var max_control_angular_velocity: float = 90.0
+@export var max_linear_velocity: Vector2 = Vector2(500, 500)
+@export var max_angular_velocity: float = 3.0
+@export var max_control_linear_velocity: float = 750.0
+@export var max_control_angular_velocity: float = 15.0
 @export var destroy_time: float = 1.0
 @export var destroy_explosion: PackedScene
+@export var linear_drag: float = 250.0
+@export var angular_drag: float = 0.10
 
 var health:float
 var control_linear_velocity = Vector2.ZERO
 var control_angular_velocity = 0.0
 var thrust_vector: Vector2 = Vector2.ZERO
 var is_destroying: bool = false
+var integrator_linear: Vector2
+var integrator_angular: float
 
 var collision_points
 var shield: Shield
@@ -34,7 +38,6 @@ func _ready():
 		for child in Globals.player_ship.get_children():
 			if child is WeaponSlot:
 				Globals.debug_objects.add_leading_line(self, child.get_child(0))
-
 
 	var weapon_slot_vectors = []
 	for child in get_children():
@@ -65,14 +68,45 @@ func _physics_process(delta):
 			if running_explosions == 0:
 				destroy()
 	else:
+		# Calc velocities for integrator
 		if control_linear_velocity and linear_velocity.length() < max_linear_velocity.length():
-			apply_force(control_linear_velocity)
+			# apply_force(control_linear_velocity)
+			integrator_linear = linear_velocity + (control_linear_velocity * delta)
 			thrust_vector = control_linear_velocity
 		else:
+			integrator_linear = linear_velocity
 			thrust_vector = Vector2.ZERO
 
-		if control_angular_velocity and abs(angular_velocity) < max_angular_velocity:
-			apply_torque(control_angular_velocity)
+		if control_angular_velocity and (abs(angular_velocity) < max_angular_velocity or (control_angular_velocity > 0) != (angular_velocity > 0)):
+			# apply_torque(control_angular_velocity)
+			integrator_angular = angular_velocity + (control_angular_velocity * delta)
+		else:
+			integrator_angular = angular_velocity
+			
+	# Apply drag to calculated forces
+	var linear_magnitude = max(integrator_linear.length() - (linear_drag * delta), 0.0)
+	integrator_linear = integrator_linear.normalized() * linear_magnitude
+
+	var angular_magnitude: float = max(abs(integrator_angular) - angular_drag, 0.0)
+	integrator_angular = angular_magnitude * (1.0 if integrator_angular >= 0.0 else -1.0)
+
+func _integrate_forces(state):
+	state.linear_velocity = integrator_linear
+	state.angular_velocity = integrator_angular
+
+	# Collisions
+	for i in state.get_contact_count():
+		if not state.get_contact_collider_object(i) is Ship: continue
+
+		var relative_velocity = state.linear_velocity - state.get_contact_collider_velocity_at_position(i)
+		var normal = state.get_contact_local_normal(i)
+
+		if relative_velocity.dot(normal) > 0.0:
+			continue
+		else:
+			var impulse_direction = normal.normalized()
+			var impulse = impulse_direction * (relative_velocity.length()) * 1.5 # Look at this - use relative masses?
+			state.apply_impulse(impulse, Vector2.ZERO)
 
 func get_stopping_distance():
 	if linear_velocity.length() <= 0.0:
