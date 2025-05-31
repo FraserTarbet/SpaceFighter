@@ -30,6 +30,11 @@ func _ready():
 	if ShipManager.show_collision_paths:
 		for i in collision_points.size() * 2:
 			Globals.debug_objects.add_collision_line(self)
+	if ShipManager.show_leading_positions and is_enemy:
+		for child in Globals.player_ship.get_children():
+			if child is WeaponSlot:
+				Globals.debug_objects.add_leading_line(self, child.get_child(0))
+
 
 	var weapon_slot_vectors = []
 	for child in get_children():
