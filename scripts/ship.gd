@@ -20,9 +20,7 @@ var is_destroying: bool = false
 var collision_points
 var shield: Shield
 var preferred_fire_vector: Vector2
-var weapon_range = 500.0 # Get this from weapons
-
-
+var weapon_range: float
 
 func _ready():
 	ShipManager.add_ship(self)
@@ -37,6 +35,9 @@ func _ready():
 	for child in get_children():
 		if child is WeaponSlot:
 			weapon_slot_vectors.append(Vector2.UP.rotated(child.rotation))
+			if not weapon_range:
+				var weapon = child.get_child(0)
+				weapon_range = weapon.projectile_velocity * weapon.projectile_lifetime
 	if weapon_slot_vectors.size() == 0:
 		preferred_fire_vector = Vector2.ZERO
 	else:
