@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Projectile.gd" id="1_2teme"]
 [ext_resource type="Texture2D" uid="uid://0ppwys5ffeaq" path="res://sprites/projectiles/shell.png" id="2_7cbsb"]
-[ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/explosion.tscn" id="2_pxhs3"]
+[ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/effects/explosion.tscn" id="2_pxhs3"]
 [ext_resource type="Texture2D" uid="uid://cn42sr6olbxvb" path="res://sprites/projectiles/shell_n.png" id="3_w8rgi"]
 [ext_resource type="Texture2D" uid="uid://2ky8simjv8mw" path="res://sprites/lights/round.png" id="4_aemor"]
 

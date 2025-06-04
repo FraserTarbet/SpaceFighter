@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bpq6ma1dbtjyx"]
+
+[ext_resource type="FontFile" uid="uid://be4j2873vjcju" path="res://Square.ttf" id="1_o3pvn"]
+
+[resource]
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("1_o3pvn")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_o3pvn")

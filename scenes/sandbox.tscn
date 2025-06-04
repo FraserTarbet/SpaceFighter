@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cb88iniaulghh"]
+[gd_scene load_steps=13 format=3 uid="uid://cb88iniaulghh"]
 
 [ext_resource type="Script" path="res://scripts/DebugObjects.gd" id="1_3j23q"]
 [ext_resource type="Script" path="res://scripts/HUD.gd" id="1_mpw1q"]
@@ -9,8 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://baoyag8lqkqsw" path="res://sprites/ambient/dust_speck.png" id="4_rmevt"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="5_7pil6"]
 [ext_resource type="Texture2D" uid="uid://c7uin5s570yqf" path="res://sprites/ambient/cloud_1.png" id="5_8x8k0"]
-[ext_resource type="PackedScene" uid="uid://cspbypp6uwqf2" path="res://scenes/ships/test_ship.tscn" id="6_hxsk8"]
-[ext_resource type="PackedScene" uid="uid://dy6gtec77gdxe" path="res://scenes/ships/test_mothership.tscn" id="11_ieb7y"]
+[ext_resource type="PackedScene" uid="uid://dpoblen2nmja5" path="res://scenes/ships/mothership.tscn" id="11_ypbvp"]
+[ext_resource type="PackedScene" uid="uid://bfrffo2rdpiw2" path="res://scenes/ships/enemy_ship.tscn" id="12_15425"]
+[ext_resource type="PackedScene" uid="uid://sl4k6ofqk1e0" path="res://scenes/ships/buzzard.tscn" id="12_g4blv"]
 
 [node name="Root" type="Node2D"]
 
@@ -70,8 +71,8 @@ color = Color(0, 0, 0, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 rotation = 0.785398
-color = Color(1, 1, 0.839216, 1)
-height = 0.5
+color = Color(1, 1, 0.831373, 1)
+height = 0.4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_speed = 2.0
@@ -101,7 +102,23 @@ opacity_max = 0.2
 min_depth = -0.5
 max_depth = 1.0
 
-[node name="PlayerShip" parent="." instance=ExtResource("6_hxsk8")]
+[node name="Mothership" parent="." instance=ExtResource("11_ypbvp")]
+position = Vector2(-832, -90)
 
-[node name="Mothership" parent="." instance=ExtResource("11_ieb7y")]
-position = Vector2(-925, 232)
+[node name="EnemyShip" parent="." instance=ExtResource("12_15425")]
+position = Vector2(4271, -2090)
+
+[node name="EnemyShip2" parent="." instance=ExtResource("12_15425")]
+position = Vector2(4519, -1410)
+
+[node name="EnemyShip3" parent="." instance=ExtResource("12_15425")]
+position = Vector2(4239, -3290)
+
+[node name="EnemyShip4" parent="." instance=ExtResource("12_15425")]
+position = Vector2(5510, 228)
+
+[node name="EnemyShip5" parent="." instance=ExtResource("12_15425")]
+position = Vector2(5357, 894)
+
+[node name="PlayerShip" parent="." instance=ExtResource("12_g4blv")]
+position = Vector2(-239, 196)

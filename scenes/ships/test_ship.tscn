@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://cspbypp6uwqf2"]
+[gd_scene load_steps=14 format=3 uid="uid://cspbypp6uwqf2"]
 
 [ext_resource type="Script" path="res://scripts/ShipPlayer.gd" id="1_0b6d3"]
 [ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_elf8c"]
 [ext_resource type="Texture2D" uid="uid://b0rrcq1jw58xw" path="res://sprites/ships/Test_Ship.png" id="2_k5f15"]
-[ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/explosion.tscn" id="2_nocar"]
+[ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/effects/explosion.tscn" id="2_nocar"]
 [ext_resource type="Texture2D" uid="uid://qcsue8h8bjv2" path="res://sprites/ships/Test_Ship_n.png" id="3_xu3so"]
 [ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="4_6xwmg"]
 [ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="5_uptdi"]
+[ext_resource type="Texture2D" uid="uid://b6o8wwx0kn4pb" path="res://sprites/particles/thruster.png" id="6_q8fj3"]
 [ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="6_ssmlp"]
 [ext_resource type="Script" path="res://scripts/Shield.gd" id="8_y1m2i"]
 [ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="9_65jnc"]
@@ -15,9 +16,9 @@
 diffuse_texture = ExtResource("2_k5f15")
 normal_texture = ExtResource("3_xu3so")
 
-[sub_resource type="Gradient" id="Gradient_6iolm"]
-offsets = PackedFloat32Array(0, 0.986667)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="Gradient" id="Gradient_7hu33"]
+offsets = PackedFloat32Array(0, 0.582011, 0.986667)
+colors = PackedColorArray(1, 0.47451, 0, 1, 1, 1, 0.427451, 0.482353, 1, 1, 1, 0)
 
 [node name="PlayerShip" type="RigidBody2D"]
 collision_layer = 2
@@ -42,21 +43,23 @@ polygon = PackedVector2Array(17, -64, 64, -17, 64, 64, 25, 59, -25, 59, -64, 64,
 texture = SubResource("CanvasTexture_vcehf")
 
 [node name="EngineParticles" type="CPUParticles2D" parent="."]
-position = Vector2(1, 61)
+z_index = -1
+position = Vector2(-1, 63)
 amount = 30
-lifetime = 0.1
+lifetime = 0.25
+texture = ExtResource("6_q8fj3")
 emission_shape = 3
-emission_rect_extents = Vector2(20, 1)
+emission_rect_extents = Vector2(5, 0)
 direction = Vector2(0, 1)
 spread = 10.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 200.0
 initial_velocity_max = 300.0
 damping_min = 100.0
-damping_max = 100.0
-scale_amount_min = 5.0
-scale_amount_max = 10.0
-color_ramp = SubResource("Gradient_6iolm")
+damping_max = 200.0
+scale_amount_min = 0.5
+scale_amount_max = 0.75
+color_ramp = SubResource("Gradient_7hu33")
 script = ExtResource("4_6xwmg")
 thrust_vector = Vector2(0, -1)
 

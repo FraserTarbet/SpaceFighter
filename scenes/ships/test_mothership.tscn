@@ -2,7 +2,7 @@
 
 [ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_2vays"]
 [ext_resource type="Script" path="res://scripts/ShipAI.gd" id="1_4cqn5"]
-[ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/explosion.tscn" id="2_51ndd"]
+[ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/effects/explosion.tscn" id="2_51ndd"]
 [ext_resource type="Texture2D" uid="uid://bknpmyxgs1wi2" path="res://sprites/ships/Test_Mothership.png" id="3_i0ydb"]
 [ext_resource type="Texture2D" uid="uid://ci34o4jcsdqmw" path="res://sprites/ships/Test_Mothership_n.png" id="4_85qoy"]
 [ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="5_wnxom"]
