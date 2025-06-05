@@ -75,6 +75,7 @@ color = Color(1, 1, 0.831373, 1)
 height = 0.4
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.25, 0.25)
 position_smoothing_speed = 2.0
 script = ExtResource("5_7pil6")
 
@@ -122,3 +123,9 @@ position = Vector2(5357, 894)
 
 [node name="PlayerShip" parent="." instance=ExtResource("12_g4blv")]
 position = Vector2(-239, 196)
+
+[node name="EnemyShip6" parent="." instance=ExtResource("12_15425")]
+position = Vector2(5444, -2707)
+
+[node name="EnemyShip7" parent="." instance=ExtResource("12_15425")]
+position = Vector2(6156, -1270)

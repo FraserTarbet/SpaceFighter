@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://sl4k6ofqk1e0"]
+[gd_scene load_steps=15 format=3 uid="uid://sl4k6ofqk1e0"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_q2mqr"]
 [ext_resource type="Script" path="res://scripts/ShipPlayer.gd" id="2_iaiii"]
@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ccvhh2nfk13iu" path="res://sprites/ships/Buzzard.png" id="4_vgkw8"]
 [ext_resource type="Texture2D" uid="uid://c7ebood2g6776" path="res://sprites/ships/Buzzard_n.png" id="5_ntsgy"]
 [ext_resource type="Texture2D" uid="uid://b6o8wwx0kn4pb" path="res://sprites/particles/thruster.png" id="6_7hls6"]
-[ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="7_mgahu"]
+[ext_resource type="Script" path="res://scripts/Engine.gd" id="7_mgahu"]
+[ext_resource type="AudioStream" uid="uid://cxx6re8a1nuuv" path="res://sounds/thruster_0.wav" id="8_gurnd"]
 [ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="8_xnuve"]
 [ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="9_3axup"]
 [ext_resource type="Script" path="res://scripts/Shield.gd" id="10_ni7bu"]
@@ -42,7 +43,7 @@ polygon = PackedVector2Array(9, -96, 56, -32, 126, -74, 126, 2, 13, 96, -13, 96,
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_5awe5")
 
-[node name="EngineParticles" type="CPUParticles2D" parent="."]
+[node name="Engine" type="CPUParticles2D" parent="."]
 z_index = -1
 position = Vector2(0, 90)
 amount = 30
@@ -62,6 +63,12 @@ scale_amount_max = 0.5
 color_ramp = SubResource("Gradient_7hu33")
 script = ExtResource("7_mgahu")
 thrust_vector = Vector2(0, -1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Engine"]
+stream = ExtResource("8_gurnd")
+volume_db = -12.0
+pitch_scale = 1.6
+autoplay = true
 
 [node name="WeaponSlot" type="Node2D" parent="."]
 position = Vector2(-56, 16)

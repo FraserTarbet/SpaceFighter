@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/effects/explosion.tscn" id="2_51ndd"]
 [ext_resource type="Texture2D" uid="uid://bknpmyxgs1wi2" path="res://sprites/ships/Test_Mothership.png" id="3_i0ydb"]
 [ext_resource type="Texture2D" uid="uid://ci34o4jcsdqmw" path="res://sprites/ships/Test_Mothership_n.png" id="4_85qoy"]
-[ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="5_wnxom"]
+[ext_resource type="Script" path="res://scripts/Engine.gd" id="5_wnxom"]
 [ext_resource type="Script" path="res://scripts/Shield.gd" id="6_34c1r"]
 [ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="7_txsx5"]
 [ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="8_vwo4a"]

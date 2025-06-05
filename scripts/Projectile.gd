@@ -38,6 +38,9 @@ func _physics_process(delta):
 	light.energy = max(remaining_flash / flash_fade_time, 0.0)
 	remaining_flash -= delta
 
+	if remaining_lifetime <= 0.0:
+		queue_free()
+
 
 func hit(object):
 	Globals.sample_manager.play_sample_at(hit_sample_bank_name, position, -18.0)

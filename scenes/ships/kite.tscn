@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cxb56b22wviji"]
+[gd_scene load_steps=15 format=3 uid="uid://cxb56b22wviji"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_bsuo7"]
 [ext_resource type="Script" path="res://scripts/ShipPlayer.gd" id="2_i4hyr"]
@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dkgqaloq33jh8" path="res://sprites/ships/Kite.png" id="4_88hdm"]
 [ext_resource type="Texture2D" uid="uid://da1gu5p3d711j" path="res://sprites/ships/Kite_n.png" id="5_dqe37"]
 [ext_resource type="Texture2D" uid="uid://b6o8wwx0kn4pb" path="res://sprites/particles/thruster.png" id="6_725r8"]
-[ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="7_6nt3r"]
+[ext_resource type="Script" path="res://scripts/Engine.gd" id="7_6nt3r"]
 [ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="8_50xgv"]
+[ext_resource type="AudioStream" uid="uid://cxx6re8a1nuuv" path="res://sounds/thruster_0.wav" id="8_nv5wm"]
 [ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="9_k7qfq"]
 [ext_resource type="Script" path="res://scripts/Shield.gd" id="10_xxlym"]
 [ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="11_kr4ss"]
@@ -42,7 +43,7 @@ polygon = PackedVector2Array(25, -112, 48, -112, 96, -17, 96, 72, 72, 95, -71, 9
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_n2wq6")
 
-[node name="EngineParticles" type="CPUParticles2D" parent="."]
+[node name="Engine" type="CPUParticles2D" parent="."]
 z_index = -1
 position = Vector2(-44, 98)
 amount = 30
@@ -63,7 +64,13 @@ color_ramp = SubResource("Gradient_7hu33")
 script = ExtResource("7_6nt3r")
 thrust_vector = Vector2(0, -1)
 
-[node name="EngineParticles2" type="CPUParticles2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Engine"]
+stream = ExtResource("8_nv5wm")
+volume_db = -12.0
+pitch_scale = 1.25
+autoplay = true
+
+[node name="Engine2" type="CPUParticles2D" parent="."]
 z_index = -1
 position = Vector2(44, 98)
 amount = 30

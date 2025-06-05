@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://dpoblen2nmja5"]
+[gd_scene load_steps=15 format=3 uid="uid://dpoblen2nmja5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_p2ny4"]
 [ext_resource type="Script" path="res://scripts/ShipAI.gd" id="2_06cb2"]
 [ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/effects/explosion.tscn" id="3_0hbl7"]
 [ext_resource type="Texture2D" uid="uid://bqktgpfg0s7ih" path="res://sprites/ships/Mothership.png" id="4_xv53u"]
 [ext_resource type="Texture2D" uid="uid://dq4b3te5n82gy" path="res://sprites/ships/Mothership_n.png" id="5_6jydx"]
-[ext_resource type="Script" path="res://scripts/EngineParticles.gd" id="6_2ie6j"]
+[ext_resource type="Script" path="res://scripts/Engine.gd" id="6_2ie6j"]
 [ext_resource type="Texture2D" uid="uid://b6o8wwx0kn4pb" path="res://sprites/particles/thruster.png" id="6_wpwfk"]
 [ext_resource type="Script" path="res://scripts/Shield.gd" id="7_evb5x"]
 [ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="8_3w32g"]
+[ext_resource type="AudioStream" uid="uid://cxx6re8a1nuuv" path="res://sounds/thruster_0.wav" id="8_xdip4"]
 [ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="9_fo3cq"]
 [ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="10_tbni7"]
 
@@ -45,7 +46,7 @@ polygon = PackedVector2Array(0, -425, 58, -425, 82, -448, 128, -448, 128, -158, 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_hnmgy")
 
-[node name="EngineParticles" type="CPUParticles2D" parent="."]
+[node name="Engine" type="CPUParticles2D" parent="."]
 z_index = -1
 position = Vector2(-70, 472)
 amount = 30
@@ -64,6 +65,11 @@ scale_amount_min = 0.75
 color_ramp = SubResource("Gradient_6iolm")
 script = ExtResource("6_2ie6j")
 thrust_vector = Vector2(0, -1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Engine"]
+stream = ExtResource("8_xdip4")
+volume_db = -12.0
+autoplay = true
 
 [node name="EngineParticles2" type="CPUParticles2D" parent="."]
 z_index = -1
@@ -108,9 +114,14 @@ script = ExtResource("9_fo3cq")
 position = Vector2(64, -360)
 script = ExtResource("9_fo3cq")
 
+[node name="Autocannon" parent="WeaponSlot2" instance=ExtResource("10_tbni7")]
+
 [node name="WeaponSlot3" type="Node2D" parent="."]
 position = Vector2(-64, 32)
+rotation = -0.785398
 script = ExtResource("9_fo3cq")
+
+[node name="Autocannon" parent="WeaponSlot3" instance=ExtResource("10_tbni7")]
 
 [node name="WeaponSlot4" type="Node2D" parent="."]
 position = Vector2(64, 32)
@@ -121,8 +132,14 @@ script = ExtResource("9_fo3cq")
 
 [node name="WeaponSlot5" type="Node2D" parent="."]
 position = Vector2(-168, 325)
+rotation = -1.5708
 script = ExtResource("9_fo3cq")
+
+[node name="Autocannon" parent="WeaponSlot5" instance=ExtResource("10_tbni7")]
 
 [node name="WeaponSlot6" type="Node2D" parent="."]
 position = Vector2(169, 325)
+rotation = 1.5708
 script = ExtResource("9_fo3cq")
+
+[node name="Autocannon" parent="WeaponSlot6" instance=ExtResource("10_tbni7")]
