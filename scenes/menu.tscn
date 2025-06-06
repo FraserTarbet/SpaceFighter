@@ -7,6 +7,7 @@
 script = ExtResource("1_gchje")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -36,21 +37,16 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/margin_bottom = 10
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/MarginContainer"]
+[node name="ButtonStartGame" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 text = "Start game"
+flat = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_bottom = 10
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="ButtonHowToPlay" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
-text = "<   "
-
-[node name="Label3" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Choose ship"
-
-[node name="Label4" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "   >"
+text = "How to Play"
+flat = true

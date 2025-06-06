@@ -1,7 +1,9 @@
 extends Node2D
 
 @export var is_menu_background: bool = false
+@export var fade_in: float = 3.0
 
+var fade_in_remaining: float
 var ships_parent
 var ship_dict = {
 	'mothership': preload("res://scenes/ships/mothership.tscn"),
@@ -12,25 +14,23 @@ var ship_dict = {
 
 func _ready():
 	ships_parent = get_node("Ships")
-
-	# spawn_ship('mothership', false)
-	# Globals.camera.get_random_follow_ship()
-
+	fade_in_remaining = fade_in
 	get_node("DirectionalLight2D").rotation = randf_range(0.0, 2 * PI)
+	if is_menu_background:
+		begin_menu_background()
+	else:
+		pass
 
-	begin_menu_background()
+func _process(delta):
+	if is_menu_background:
+		process_menu_background()
+	else:
+		pass
 
-func _process(_delta):
-	if ShipManager.enemy_ships.size() <= 4:
-		spawn_ship('enemy_ship', true)
-	if ShipManager.friendly_ships.size() <= 2:
-		var r = randf()
-		if r > 0.8:
-			spawn_ship('mothership', false)
-		elif r > 0.4:
-			spawn_ship('kite', false)
-		else:
-			spawn_ship('buzzard', false)
+	var fade: float = 1.0 - (fade_in_remaining / fade_in)
+	modulate = Color(fade, fade, fade)
+
+	fade_in_remaining = max(fade_in_remaining - delta, 0.0)
 
 func spawn_ship(ship_type: String, is_enemy: bool):
 	var ship = ship_dict[ship_type].instantiate()
@@ -47,14 +47,14 @@ func spawn_ship(ship_type: String, is_enemy: bool):
 func begin_menu_background():
 	for i in range(3):
 		var r = randf()
-		if r > 0.9:
+		if r > 0.8:
 			spawn_ship('mothership', false)
 		elif r > 0.4:
 			spawn_ship('kite', false)
 		else:
 			spawn_ship('buzzard', false)
 	for i in range(5):
-		spawn_ship('mothership', true)
+		spawn_ship('enemy_ship', true)
 	
 	Globals.camera.get_random_follow_ship()
 

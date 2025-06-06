@@ -16,7 +16,7 @@ func _process(delta):
 
 	# Smooth zoom
 	target_zoom = clamp(target_zoom, min_zoom, max_zoom)
-	zoom = lerp(zoom, target_zoom, 0.9 * delta)
+	zoom = lerp(zoom, target_zoom, 0.95 * delta)
 
 func get_random_follow_ship():
 	var ships = ShipManager.ships

@@ -7,3 +7,4 @@ var manager
 func _ready():
 	if manager:
 		finished.connect(manager.free_player.bind(self))
+	bus = "Sound"
