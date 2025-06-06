@@ -11,6 +11,8 @@ var music_streams = {
 
 func _ready():
     music_player = get_node("MusicPlayer")
+    for k in music_streams.keys():
+        AudioServer.register_stream_as_sample(music_streams[k])
     
     var start = start_screen_scene.instantiate()
     start.main = self

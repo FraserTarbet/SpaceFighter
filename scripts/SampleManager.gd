@@ -64,6 +64,9 @@ func _ready():
         add_child(player)    
 
 func play_sample_at(sample_bank_name: String, at: Vector2, level: float = 0.0):
+    if (at - Globals.camera.position).length() > 2000:
+        return
+        
     if free_players.size() == 0:
         print("No free sample players")
         return
