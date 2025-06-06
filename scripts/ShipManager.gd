@@ -185,7 +185,7 @@ func get_ships_in_range(weapon: Weapon):
 		var vector_to_ship_lead_position = ship_lead_position - weapon.global_position
 		var required_rotation = Vector2.UP.rotated(weapon.weapon_slot.global_rotation).angle_to(vector_to_ship_lead_position)
 
-		if abs(required_rotation) <= weapon.radius_radians and vector_to_ship_lead_position.length() <= weapon.projectile_range:
+		if abs(required_rotation) <= weapon.radius_radians and vector_to_ship_lead_position.length() <= weapon.weapon_range:
 			ships_in_range.append(ship)
 
 	return ships_in_range

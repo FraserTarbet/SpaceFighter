@@ -57,14 +57,15 @@ func _process(delta):
 	elif energy < max_energy:
 		energy = min(energy + (recharge_speed * delta), max_energy)
 
-func hit(projectile: Projectile):
-	var projectile_local_position = (projectile.global_position - global_position).rotated(-global_rotation)
-	flare_vector_start = projectile_local_position
-	flare_vector_end = -projectile_local_position
+func hit(damage: float, hit_global_position: Vector2):
+	# var projectile_local_position = (projectile.global_position - global_position).rotated(-global_rotation)
+	var local_position = (hit_global_position - global_position).rotated(-global_rotation)
+	flare_vector_start = local_position
+	flare_vector_end = -local_position
 	remaining_flare_time = flare_time
 
-	var remaining_projectile_damage = max(projectile.damage - energy, 0.0)
-	energy = max(energy - projectile.damage, 0.0)
+	var remaining_damage = max(damage - energy, 0.0)
+	energy = max(energy - damage, 0.0)
 	remaining_recharge_delay = recharge_delay
 
-	return remaining_projectile_damage
+	return remaining_damage

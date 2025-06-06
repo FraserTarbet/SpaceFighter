@@ -9,6 +9,7 @@ var is_firing: bool = true
 var remaining_cooldown: float = 0.0
 var ship: Ship
 var weapon_slot: WeaponSlot
+var weapon_range: float
 
 var radius_radians: float
 

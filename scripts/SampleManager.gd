@@ -45,6 +45,9 @@ func _ready():
             ResourceLoader.load("res://sounds/shell_hit_2.wav"),
             ResourceLoader.load("res://sounds/shell_hit_3.wav"),
             ResourceLoader.load("res://sounds/shell_hit_4.wav")
+        ],
+        'thruster': [
+            ResourceLoader.load("res://sounds/thruster_0.wav")
         ]
     }
 

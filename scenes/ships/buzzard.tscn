@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/Engine.gd" id="7_mgahu"]
 [ext_resource type="AudioStream" uid="uid://cxx6re8a1nuuv" path="res://sounds/thruster_0.wav" id="8_gurnd"]
 [ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="8_xnuve"]
-[ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="9_3axup"]
+[ext_resource type="PackedScene" uid="uid://bbiunchg5g6nw" path="res://scenes/weapons/laser.tscn" id="10_46oen"]
 [ext_resource type="Script" path="res://scripts/Shield.gd" id="10_ni7bu"]
 [ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="11_rdhr3"]
 
@@ -74,13 +74,13 @@ autoplay = true
 position = Vector2(-56, 16)
 script = ExtResource("8_xnuve")
 
-[node name="Autocannon" parent="WeaponSlot" instance=ExtResource("9_3axup")]
+[node name="Laser" parent="WeaponSlot" instance=ExtResource("10_46oen")]
 
 [node name="WeaponSlot2" type="Node2D" parent="."]
 position = Vector2(58, 16)
 script = ExtResource("8_xnuve")
 
-[node name="Autocannon2" parent="WeaponSlot2" instance=ExtResource("9_3axup")]
+[node name="Laser" parent="WeaponSlot2" instance=ExtResource("10_46oen")]
 
 [node name="Shield" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(-10, -96, 10, -96, 56, -33, 125, -72, 126, 1, 76, 51, 13, 96, -12, 96, -77, 51, -126, 1, -127, -72, -57, -32)

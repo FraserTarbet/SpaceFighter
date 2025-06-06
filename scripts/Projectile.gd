@@ -51,6 +51,6 @@ func hit(object):
 	explosion.linear_velocity = (object.linear_velocity + last_linear_velocity) * 0.5
 	object.add_child(explosion)
 	explosion.global_position = position
-	object.take_damage(self)
+	object.take_damage(damage, global_position)
 
 	queue_free()

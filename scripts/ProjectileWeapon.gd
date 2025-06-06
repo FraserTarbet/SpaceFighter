@@ -10,13 +10,11 @@ extends Weapon
 @export var projectile_burst_spread: int
 @export var projectile_damage: float
 
-var projectile_range: float
-
 func _ready():
 	super()
-	projectile_range = projectile_velocity * projectile_lifetime
+	weapon_range = projectile_velocity * projectile_lifetime
 
-func _process(delta):
+func _physics_process(delta):
 	if ship.is_destroying:
 		return
 	else:

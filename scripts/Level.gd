@@ -1,7 +1,6 @@
 extends Node2D
 
-@export var is_spectator: bool = false
-@export var is_silent: bool = false
+@export var is_menu_background: bool = false
 
 var ships_parent
 var ship_dict = {
@@ -13,10 +12,13 @@ var ship_dict = {
 
 func _ready():
 	ships_parent = get_node("Ships")
-	spawn_ship('mothership', false)
-	Globals.camera.get_random_follow_ship()
+
+	# spawn_ship('mothership', false)
+	# Globals.camera.get_random_follow_ship()
 
 	get_node("DirectionalLight2D").rotation = randf_range(0.0, 2 * PI)
+
+	begin_menu_background()
 
 func _process(_delta):
 	if ShipManager.enemy_ships.size() <= 4:
@@ -41,3 +43,29 @@ func spawn_ship(ship_type: String, is_enemy: bool):
 	return ship
 
 	# Check placement
+
+func begin_menu_background():
+	for i in range(3):
+		var r = randf()
+		if r > 0.9:
+			spawn_ship('mothership', false)
+		elif r > 0.4:
+			spawn_ship('kite', false)
+		else:
+			spawn_ship('buzzard', false)
+	for i in range(5):
+		spawn_ship('mothership', true)
+	
+	Globals.camera.get_random_follow_ship()
+
+func process_menu_background():
+	if ShipManager.enemy_ships.size() <= 4:
+		spawn_ship('enemy_ship', true)
+	if ShipManager.friendly_ships.size() <= 2:
+		var r = randf()
+		if r > 0.8:
+			spawn_ship('mothership', false)
+		elif r > 0.4:
+			spawn_ship('kite', false)
+		else:
+			spawn_ship('buzzard', false)

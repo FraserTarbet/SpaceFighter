@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dpoblen2nmja5"]
+[gd_scene load_steps=16 format=3 uid="uid://dpoblen2nmja5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_p2ny4"]
 [ext_resource type="Script" path="res://scripts/ShipAI.gd" id="2_06cb2"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cxx6re8a1nuuv" path="res://sounds/thruster_0.wav" id="8_xdip4"]
 [ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="9_fo3cq"]
 [ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="10_tbni7"]
+[ext_resource type="PackedScene" uid="uid://bbiunchg5g6nw" path="res://scenes/weapons/laser.tscn" id="13_l8rug"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_hnmgy"]
 diffuse_texture = ExtResource("4_xv53u")
@@ -26,7 +27,7 @@ collision_layer = 2
 collision_mask = 7
 mass = 20.0
 physics_material_override = ExtResource("1_p2ny4")
-inertia = 20.0
+inertia = 10.0
 can_sleep = false
 freeze_mode = 1
 custom_integrator = true
@@ -35,10 +36,14 @@ max_contacts_reported = 1
 linear_damp = 0.25
 angular_damp = 0.75
 script = ExtResource("2_06cb2")
+max_health = 10.0
 max_linear_velocity = Vector2(200, 200)
 max_angular_velocity = 0.25
+max_control_linear_velocity = 300.0
+max_control_angular_velocity = 10.0
 destroy_time = 5.0
 destroy_explosion = ExtResource("3_0hbl7")
+linear_drag = 50.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -425, 58, -425, 82, -448, 128, -448, 128, -158, 201, -122, 201, -56, 130, -32, 131, 143, 161, 143, 240, 205, 240, 320, 193, 368, 145, 368, 145, 463, -144, 463, -144, 369, -193, 369, -241, 319, -241, 207, -160, 143, -130, 143, -130, -40, -200, -57, -200, -122, -128, -164, -128, -448, -81, -448, -57, -425)
@@ -97,7 +102,7 @@ position = Vector2(12, -78)
 polygon = PackedVector2Array(-12, -352, 43, -352, 69, -375, 118, -374, 119, -83, 193, -45, 193, 24, 122, 49, 122, 217, 149, 217, 232, 281, 232, 400, 183, 450, 138, 450, 138, 545, -160, 545, -160, 451, -206, 451, -257, 398, -257, 283, -174, 217, -146, 217, -146, 43, -215, 23, -215, -47, -144, -88, -143, -372, -93, -372, -67, -352)
 vertex_colors = PackedColorArray(0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0.0117647, 0.928201, 0.870718, 0.764062, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0.00392157, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0)
 script = ExtResource("7_evb5x")
-max_energy = 50.0
+max_energy = 250.0
 recharge_delay = 10.0
 recharge_speed = 5.0
 flare_time = 0.5
@@ -114,21 +119,21 @@ script = ExtResource("9_fo3cq")
 position = Vector2(64, -360)
 script = ExtResource("9_fo3cq")
 
-[node name="Autocannon" parent="WeaponSlot2" instance=ExtResource("10_tbni7")]
+[node name="Laser" parent="WeaponSlot2" instance=ExtResource("13_l8rug")]
 
 [node name="WeaponSlot3" type="Node2D" parent="."]
 position = Vector2(-64, 32)
 rotation = -0.785398
 script = ExtResource("9_fo3cq")
 
-[node name="Autocannon" parent="WeaponSlot3" instance=ExtResource("10_tbni7")]
+[node name="Laser" parent="WeaponSlot3" instance=ExtResource("13_l8rug")]
 
 [node name="WeaponSlot4" type="Node2D" parent="."]
 position = Vector2(64, 32)
 rotation = 0.785398
 script = ExtResource("9_fo3cq")
 
-[node name="Autocannon" parent="WeaponSlot4" instance=ExtResource("10_tbni7")]
+[node name="Laser" parent="WeaponSlot4" instance=ExtResource("13_l8rug")]
 
 [node name="WeaponSlot5" type="Node2D" parent="."]
 position = Vector2(-168, 325)

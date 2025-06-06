@@ -45,7 +45,7 @@ func _ready():
 			weapon_slot_vectors.append(Vector2.UP.rotated(child.rotation))
 			if not weapon_range:
 				var weapon = child.get_child(0)
-				weapon_range = weapon.projectile_velocity * weapon.projectile_lifetime
+				weapon_range = weapon.weapon_range
 	if weapon_slot_vectors.size() == 0:
 		preferred_fire_vector = Vector2.ZERO
 	else:
@@ -129,10 +129,10 @@ func get_collision_paths(time):
 
 	return paths
 
-func take_damage(projectile: Projectile):
-	var remaining_projectile_damage = shield.hit(projectile)
+func take_damage(damage: float, hit_global_position: Vector2):
+	var remaining_damage = shield.hit(damage, hit_global_position)
 
-	health -= remaining_projectile_damage
+	health -= remaining_damage
 	if health <= 0.0 and not is_destroying:
 		is_destroying = true
 
