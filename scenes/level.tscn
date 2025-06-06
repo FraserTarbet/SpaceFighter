@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://8hrkj0bjlmxk"]
+
+[ext_resource type="Script" path="res://scripts/SampleManager.gd" id="1_d240d"]
+[ext_resource type="Script" path="res://scripts/Level.gd" id="1_pd7y6"]
+[ext_resource type="Script" path="res://scripts/ProjectileManager.gd" id="2_g4tp2"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="3_1lcvw"]
+[ext_resource type="Script" path="res://scripts/AmbientParallax.gd" id="4_sewys"]
+[ext_resource type="Texture2D" uid="uid://baoyag8lqkqsw" path="res://sprites/ambient/dust_speck.png" id="5_lgp50"]
+[ext_resource type="Texture2D" uid="uid://c7uin5s570yqf" path="res://sprites/ambient/cloud_1.png" id="6_18ow2"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_pd7y6")
+
+[node name="SampleManager" type="Node2D" parent="."]
+script = ExtResource("1_d240d")
+
+[node name="ProjectileManager" type="Node2D" parent="."]
+script = ExtResource("2_g4tp2")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = 0.785398
+color = Color(1, 1, 0.831373, 1)
+height = 0.4
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_speed = 2.0
+script = ExtResource("3_1lcvw")
+
+[node name="Specks" type="Node2D" parent="Camera2D"]
+script = ExtResource("4_sewys")
+texture = ExtResource("5_lgp50")
+area = 2000
+frequency = 200
+scale_min = 0.6
+scale_max = 1.0
+opacity_min = 0.2
+opacity_max = 0.4
+min_depth = -0.5
+max_depth = 1.0
+
+[node name="Cloud1" type="Node2D" parent="Camera2D"]
+script = ExtResource("4_sewys")
+texture = ExtResource("6_18ow2")
+area = 8000
+frequency = 100
+scale_min = 2.0
+scale_max = 5.0
+opacity_min = 0.1
+opacity_max = 0.2
+min_depth = -0.5
+max_depth = 1.0
+
+[node name="Ships" type="Node2D" parent="."]

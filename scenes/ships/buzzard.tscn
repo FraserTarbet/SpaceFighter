@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://sl4k6ofqk1e0"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_q2mqr"]
-[ext_resource type="Script" path="res://scripts/ShipPlayer.gd" id="2_iaiii"]
+[ext_resource type="Script" path="res://scripts/ShipAI.gd" id="2_m266m"]
 [ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/effects/explosion.tscn" id="3_mwk8p"]
 [ext_resource type="Texture2D" uid="uid://ccvhh2nfk13iu" path="res://sprites/ships/Buzzard.png" id="4_vgkw8"]
 [ext_resource type="Texture2D" uid="uid://c7ebood2g6776" path="res://sprites/ships/Buzzard_n.png" id="5_ntsgy"]
@@ -33,7 +33,7 @@ contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 0.75
 angular_damp = 0.75
-script = ExtResource("2_iaiii")
+script = ExtResource("2_m266m")
 max_health = 50.0
 destroy_explosion = ExtResource("3_mwk8p")
 

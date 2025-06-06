@@ -40,6 +40,7 @@ func _physics_process(delta):
 
 	if remaining_lifetime <= 0.0:
 		queue_free()
+	remaining_lifetime -= delta
 
 
 func hit(object):
