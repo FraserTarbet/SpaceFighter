@@ -134,46 +134,47 @@ func get_attack_position(ship: Ship, target: Ship):
 			return target.position + attacker_position[1]
 
 func get_ship_lead_position(ship: Ship, weapon: Weapon):
-	var relative_position = ship.global_position - weapon.global_position
-	var relative_velocity = ship.linear_velocity - weapon.ship.linear_velocity
-
-	# a*t^2 + b*t + c = 0
-	var a = relative_velocity.length_squared() - weapon.projectile_velocity ** 2
-	var b = 2.0 * relative_position.dot(relative_velocity)
-	var c = relative_position.length_squared()
-	var discriminant = b * b - 4.0 * a * c
-
 	var ship_lead_position: Vector2
 
-	if discriminant < 0.0:
-		ship_lead_position = ship.global_position
-	else:
-		# Minimum positive time to intercept
-		var sqrt_discriminant = sqrt(discriminant)
-		var t1 = (-b - sqrt_discriminant) / (2.0 * a)
-		var t2 = (-b + sqrt_discriminant) / (2.0 * a)
+	if weapon is ProjectileWeapon:
+		var relative_position = ship.global_position - weapon.global_position
+		var relative_velocity = ship.linear_velocity - weapon.ship.linear_velocity
 
-		if max(t1, t2) <= 0.0:
+		# a*t^2 + b*t + c = 0
+		var a = relative_velocity.length_squared() - weapon.projectile_velocity ** 2
+		var b = 2.0 * relative_position.dot(relative_velocity)
+		var c = relative_position.length_squared()
+		var discriminant = b * b - 4.0 * a * c
+
+		if discriminant < 0.0:
 			ship_lead_position = ship.global_position
 		else:
-			var t: float
-			if t1 > 0.0 and t2 > 0.0:
-				t = min(t1, t2)
-			elif t1 > 0.0:
-				t = t1
-			elif t2 > 0.0:
-				t = t2
+			# Minimum positive time to intercept
+			var sqrt_discriminant = sqrt(discriminant)
+			var t1 = (-b - sqrt_discriminant) / (2.0 * a)
+			var t2 = (-b + sqrt_discriminant) / (2.0 * a)
 
-			ship_lead_position = ship.global_position + (relative_velocity * t)
+			if max(t1, t2) <= 0.0:
+				ship_lead_position = ship.global_position
+			else:
+				var t: float
+				if t1 > 0.0 and t2 > 0.0:
+					t = min(t1, t2)
+				elif t1 > 0.0:
+					t = t1
+				elif t2 > 0.0:
+					t = t2
 
-		
-	if show_leading_positions and weapon.ship == Globals.player_ship:
-		var points: PackedVector2Array = [weapon.global_position, ship_lead_position]
-		Globals.debug_objects.leading_markers[[ship, weapon]].set_points(points)
+				ship_lead_position = ship.global_position + (relative_velocity * t)
+
+			
+		if show_leading_positions and weapon.ship == Globals.player_ship:
+			var points: PackedVector2Array = [weapon.global_position, ship_lead_position]
+			Globals.debug_objects.leading_markers[[ship, weapon]].set_points(points)
+	else:
+		ship_lead_position = ship.global_position
 
 	return ship_lead_position
-		
-
 
 func get_ships_in_range(weapon: Weapon):
 	var ship_list = friendly_ships if weapon.ship.is_enemy else enemy_ships
