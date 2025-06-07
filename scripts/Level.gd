@@ -9,7 +9,7 @@ var ship_dict = {
 	'mothership': preload("res://scenes/ships/mothership.tscn"),
 	'kite': preload("res://scenes/ships/kite.tscn"),
 	'buzzard': preload("res://scenes/ships/buzzard.tscn"),
-	'enemy_ship': preload("res://scenes/ships/enemy_ship.tscn")
+	'sentinel': preload("res://scenes/ships/sentinel.tscn")
 }
 
 func _ready():
@@ -62,7 +62,7 @@ func begin_menu_background():
 func process_menu_background():
 	if Globals.is_low_spec:
 		if ShipManager.enemy_ships.size() < 3:
-			spawn_ship('enemy_ship', true)
+			spawn_ship('sentinel', true)
 		if ShipManager.friendly_ships.size() < 2:
 			var r = randf()
 			if r > 0.8:
@@ -73,7 +73,7 @@ func process_menu_background():
 				spawn_ship('buzzard', false)
 	else:
 		if ShipManager.enemy_ships.size() <= 4:
-			spawn_ship('enemy_ship', true)
+			spawn_ship('sentinel', true)
 		if ShipManager.friendly_ships.size() <= 2:
 			var r = randf()
 			if r > 0.8:

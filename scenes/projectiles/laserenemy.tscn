@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgekrfrycinvq"]
+
+[ext_resource type="Script" path="res://scripts/Beam.gd" id="1_7ivyb"]
+[ext_resource type="Texture2D" uid="uid://2ky8simjv8mw" path="res://sprites/lights/round.png" id="2_nt4tt"]
+
+[node name="Laser" type="Line2D"]
+z_index = 1
+points = PackedVector2Array(0, 0, 100, -100)
+width = 5.0
+default_color = Color(1, 0.156863, 0.156863, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("1_7ivyb")
+fade = 0.3
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.156863, 0.156863, 1)
+texture = ExtResource("2_nt4tt")
+height = 50.0

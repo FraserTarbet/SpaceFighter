@@ -8,9 +8,9 @@ var ship_attackers = {} #{ship: [attacker, position]}
 
 var show_collision_paths = false
 var show_leading_positions = false
-var collision_path_time = 0.5
+var collision_path_time = 1.0
 
-var collision_detection_spread = 30
+var collision_detection_spread = 10
 var next_collision_detection_frame = 1
 
 var rng = RandomNumberGenerator.new()
@@ -24,7 +24,7 @@ func add_ship(ship):
 		ship_attackers[ship] = []
 
 		ship.collision_detection_frame = next_collision_detection_frame
-		next_collision_detection_frame = (next_collision_detection_frame + 1) % collision_detection_spread
+		next_collision_detection_frame = 1 if next_collision_detection_frame == collision_detection_spread else collision_detection_spread + 1
 
 	if ship.is_enemy:
 		if not enemy_ships.has(ship):
