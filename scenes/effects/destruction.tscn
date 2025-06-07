@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3be5suucqhdc"]
+
+[ext_resource type="Script" path="res://scripts/Destruction.gd" id="1_4vw5r"]
+
+[node name="Destruction" type="Node2D"]
+visible = false
+script = ExtResource("1_4vw5r")
+shard_count = 20

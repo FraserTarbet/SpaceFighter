@@ -58,6 +58,8 @@ func _ready():
 func _physics_process(delta):
 	if is_destroying:
 		thrust_vector = Vector2.ZERO
+		linear_drag = 0.0
+		angular_drag = 0.0
 		destroy_time -= delta
 		var running_explosions = 0
 		for c in get_children():
@@ -66,6 +68,9 @@ func _physics_process(delta):
 			if not get_node("CollisionPolygon2D").disabled:
 				get_node("CollisionPolygon2D").disabled = true
 				Globals.set_all_canvas_items_alpha(self, 0.0)
+				var destruction_scene = get_node_or_null("Destruction")
+				if destruction_scene != null:
+					destruction_scene.start()
 			if running_explosions == 0:
 				destroy()
 	else:
@@ -137,7 +142,7 @@ func take_damage(damage: float, hit_global_position: Vector2):
 	if health <= 0.0 and not is_destroying:
 		is_destroying = true
 
-		var spread = (collision_points[int(collision_points.size() * 0.5)] - collision_points[0]).length()
+		var spread = ((collision_points[int(collision_points.size() * 0.5)] - collision_points[0]).length()) * 0.5
 		var pre_delay = randf_range(0.0, 1.0)
 		while pre_delay < destroy_time:
 			var explosion = destroy_explosion.instantiate()

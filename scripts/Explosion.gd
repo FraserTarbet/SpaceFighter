@@ -17,7 +17,7 @@ func _ready():
     remaining_lifetime = size
 
     light.scale *= size
-    particles.lifetime = particles.lifetime * size
+    particles.lifetime = particles.lifetime * (size * 0.5)
     particles.amount = int(float(particles.amount) * size)
     particles.emission_sphere_radius *= size
     particles.initial_velocity_max *= size
@@ -31,7 +31,7 @@ func _process(delta):
 
     if pre_delay <= 0.0 and light.visible:    
         remaining_lifetime -= delta
-        light.energy = remaining_lifetime
+        light.scale = Vector2(1, 1) * (remaining_lifetime / size)
 
     if remaining_lifetime <= 0.0:
         queue_free()

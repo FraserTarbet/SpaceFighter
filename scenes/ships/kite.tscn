@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cxb56b22wviji"]
+[gd_scene load_steps=16 format=3 uid="uid://cxb56b22wviji"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_bsuo7"]
 [ext_resource type="Script" path="res://scripts/ShipAI.gd" id="2_ap1fw"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="9_k7qfq"]
 [ext_resource type="Script" path="res://scripts/Shield.gd" id="10_xxlym"]
 [ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="11_kr4ss"]
+[ext_resource type="PackedScene" uid="uid://c3be5suucqhdc" path="res://scenes/effects/destruction.tscn" id="13_6rdv6"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_n2wq6"]
 diffuse_texture = ExtResource("4_88hdm")
@@ -113,3 +114,5 @@ recharge_speed = 1.0
 flare_time = 1.0
 flare_warmup = 0.1
 gradient = ExtResource("11_kr4ss")
+
+[node name="Destruction" parent="." instance=ExtResource("13_6rdv6")]

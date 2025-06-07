@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://n6owcc0mbg4c"]
+[gd_scene load_steps=17 format=3 uid="uid://n6owcc0mbg4c"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_cg8vq"]
 [ext_resource type="Script" path="res://scripts/ShipAI.gd" id="2_q52xg"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bvghq4g2g0cgm" path="res://scenes/weapons/laserenemy.tscn" id="11_8gcvp"]
 [ext_resource type="Script" path="res://scripts/Shield.gd" id="11_wxnmy"]
 [ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="12_2ekub"]
+[ext_resource type="PackedScene" uid="uid://c3be5suucqhdc" path="res://scenes/effects/destruction.tscn" id="14_qi6qn"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3sv6c"]
 diffuse_texture = ExtResource("4_bagpg")
@@ -37,8 +38,9 @@ max_contacts_reported = 1
 linear_damp = 0.75
 angular_damp = 0.75
 script = ExtResource("2_q52xg")
-max_health = 10.0
+max_health = 5.0
 is_enemy = true
+destroy_time = 2.0
 destroy_explosion = ExtResource("3_hfc8d")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -90,3 +92,5 @@ recharge_speed = 1.0
 flare_time = 1.0
 flare_warmup = 0.1
 gradient = ExtResource("12_2ekub")
+
+[node name="Destruction" parent="." instance=ExtResource("14_qi6qn")]
