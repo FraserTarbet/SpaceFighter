@@ -22,6 +22,7 @@ var integrator_linear: Vector2
 var integrator_angular: float
 
 var collision_points
+var collision_detection_frame: int
 var shield: Shield
 var preferred_fire_vector: Vector2
 var weapon_range: float

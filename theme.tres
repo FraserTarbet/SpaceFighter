@@ -3,8 +3,9 @@
 [ext_resource type="FontFile" uid="uid://be4j2873vjcju" path="res://Square.ttf" id="1_o3pvn"]
 
 [resource]
-Button/constants/outline_size = 2
-Button/font_sizes/font_size = 24
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 50
 Button/fonts/font = ExtResource("1_o3pvn")
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_o3pvn")

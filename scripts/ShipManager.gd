@@ -10,6 +10,9 @@ var show_collision_paths = false
 var show_leading_positions = false
 var collision_path_time = 0.5
 
+var collision_detection_spread = 30
+var next_collision_detection_frame = 1
+
 var rng = RandomNumberGenerator.new()
 
 func _process(_delta):
@@ -19,6 +22,9 @@ func add_ship(ship):
 	if not ships.has(ship):
 		ships.append(ship)
 		ship_attackers[ship] = []
+
+		ship.collision_detection_frame = next_collision_detection_frame
+		next_collision_detection_frame = (next_collision_detection_frame + 1) % collision_detection_spread
 
 	if ship.is_enemy:
 		if not enemy_ships.has(ship):
@@ -45,14 +51,17 @@ func collision_avoidance():
 	var colliding_ships = []
 	for i in ship_paths.size():
 		var current_ship = ship_paths.keys()[i]
-		var current_paths = ship_paths[current_ship]
-		for j in range(i + 1, ship_paths.size()):
-			var other_ship = ship_paths.keys()[j]
-			for current_path in current_paths:
-				for other_path in ship_paths[other_ship]:
-					if Geometry2D.segment_intersects_segment(current_path[0], current_path[1], other_path[0], other_path[1]):
-						if not colliding_ships.has([current_ship, other_ship]):
-							colliding_ships.append([current_ship, other_ship])
+		if Engine.get_process_frames() % current_ship.collision_detection_frame != 0:
+			continue
+		else:
+			var current_paths = ship_paths[current_ship]
+			for j in range(i + 1, ship_paths.size()):
+				var other_ship = ship_paths.keys()[j]
+				for current_path in current_paths:
+					for other_path in ship_paths[other_ship]:
+						if Geometry2D.segment_intersects_segment(current_path[0], current_path[1], other_path[0], other_path[1]):
+							if not colliding_ships.has([current_ship, other_ship]):
+								colliding_ships.append([current_ship, other_ship])
 
 	# Lighter ship avoids?
 	for collision in colliding_ships:

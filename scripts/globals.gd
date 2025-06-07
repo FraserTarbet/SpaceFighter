@@ -7,6 +7,8 @@ var projectile_manager
 var sample_manager
 var hud
 
+var is_low_spec
+
 var collision_layer_dict = {
 	'Environment' = 0,
 	'Friendly' = 1,
@@ -14,6 +16,8 @@ var collision_layer_dict = {
 	'Projectile' = 3
 }
 
+func _ready():
+	is_low_spec = OS.has_feature("web")
 
 func set_all_canvas_items_alpha(node: Node2D, alpha: float):
 	for child in node.get_children():

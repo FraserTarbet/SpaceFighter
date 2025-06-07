@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7ebood2g6776"
-path="res://.godot/imported/Buzzard_n.png-2cd2099609b2cc032a845c4274adf797.ctex"
+path.s3tc="res://.godot/imported/Buzzard_n.png-2cd2099609b2cc032a845c4274adf797.s3tc.ctex"
+path.etc2="res://.godot/imported/Buzzard_n.png-2cd2099609b2cc032a845c4274adf797.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://sprites/ships/Buzzard_n.png"
-dest_files=["res://.godot/imported/Buzzard_n.png-2cd2099609b2cc032a845c4274adf797.ctex"]
+dest_files=["res://.godot/imported/Buzzard_n.png-2cd2099609b2cc032a845c4274adf797.s3tc.ctex", "res://.godot/imported/Buzzard_n.png-2cd2099609b2cc032a845c4274adf797.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

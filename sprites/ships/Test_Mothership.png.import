@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bknpmyxgs1wi2"
-path="res://.godot/imported/Test_Mothership.png-3a15c9bc44c7728a231cddf6b92bafdb.ctex"
+path.s3tc="res://.godot/imported/Test_Mothership.png-3a15c9bc44c7728a231cddf6b92bafdb.s3tc.ctex"
+path.etc2="res://.godot/imported/Test_Mothership.png-3a15c9bc44c7728a231cddf6b92bafdb.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://sprites/ships/Test_Mothership.png"
-dest_files=["res://.godot/imported/Test_Mothership.png-3a15c9bc44c7728a231cddf6b92bafdb.ctex"]
+dest_files=["res://.godot/imported/Test_Mothership.png-3a15c9bc44c7728a231cddf6b92bafdb.s3tc.ctex", "res://.godot/imported/Test_Mothership.png-3a15c9bc44c7728a231cddf6b92bafdb.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

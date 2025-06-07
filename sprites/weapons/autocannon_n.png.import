@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2sjr2o74v80v"
-path="res://.godot/imported/autocannon_n.png-223ad0a90d8de0f085f11797fe80e094.ctex"
+path.s3tc="res://.godot/imported/autocannon_n.png-223ad0a90d8de0f085f11797fe80e094.s3tc.ctex"
+path.etc2="res://.godot/imported/autocannon_n.png-223ad0a90d8de0f085f11797fe80e094.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://sprites/weapons/autocannon_n.png"
-dest_files=["res://.godot/imported/autocannon_n.png-223ad0a90d8de0f085f11797fe80e094.ctex"]
+dest_files=["res://.godot/imported/autocannon_n.png-223ad0a90d8de0f085f11797fe80e094.s3tc.ctex", "res://.godot/imported/autocannon_n.png-223ad0a90d8de0f085f11797fe80e094.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -45,27 +45,40 @@ func spawn_ship(ship_type: String, is_enemy: bool):
 	# Check placement
 
 func begin_menu_background():
-	for i in range(3):
-		var r = randf()
-		if r > 0.8:
-			spawn_ship('mothership', false)
-		elif r > 0.4:
-			spawn_ship('kite', false)
-		else:
-			spawn_ship('buzzard', false)
-	for i in range(5):
-		spawn_ship('enemy_ship', true)
+	if Globals.is_low_spec:
+		spawn_ship('mothership', false)		
+	else:
+		for i in range(3):
+			var r = randf()
+			if r > 0.8:
+				spawn_ship('mothership', false)
+			elif r > 0.4:
+				spawn_ship('kite', false)
+			else:
+				spawn_ship('buzzard', false)
 	
 	Globals.camera.get_random_follow_ship()
 
 func process_menu_background():
-	if ShipManager.enemy_ships.size() <= 4:
-		spawn_ship('enemy_ship', true)
-	if ShipManager.friendly_ships.size() <= 2:
-		var r = randf()
-		if r > 0.8:
-			spawn_ship('mothership', false)
-		elif r > 0.4:
-			spawn_ship('kite', false)
-		else:
-			spawn_ship('buzzard', false)
+	if Globals.is_low_spec:
+		if ShipManager.enemy_ships.size() < 3:
+			spawn_ship('enemy_ship', true)
+		if ShipManager.friendly_ships.size() < 2:
+			var r = randf()
+			if r > 0.8:
+				spawn_ship('mothership', false)
+			elif r > 0.4:
+				spawn_ship('kite', false)
+			else:
+				spawn_ship('buzzard', false)
+	else:
+		if ShipManager.enemy_ships.size() <= 4:
+			spawn_ship('enemy_ship', true)
+		if ShipManager.friendly_ships.size() <= 2:
+			var r = randf()
+			if r > 0.8:
+				spawn_ship('mothership', false)
+			elif r > 0.4:
+				spawn_ship('kite', false)
+			else:
+				spawn_ship('buzzard', false)
