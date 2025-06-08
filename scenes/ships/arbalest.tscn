@@ -1,0 +1,106 @@
+[gd_scene load_steps=17 format=3 uid="uid://buscferrbvkh8"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_eaiun"]
+[ext_resource type="Script" path="res://scripts/ShipAI.gd" id="2_0alim"]
+[ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/effects/explosion.tscn" id="3_0gg2a"]
+[ext_resource type="Texture2D" uid="uid://boib224l1migo" path="res://sprites/ships/Arbalest.png" id="4_71edl"]
+[ext_resource type="Texture2D" uid="uid://d372vcthv44ke" path="res://sprites/ships/Arbalest_n.png" id="5_cl3ht"]
+[ext_resource type="Texture2D" uid="uid://3fvt57n5kjai" path="res://sprites/ships/Arbalest_s.png" id="6_vq3ct"]
+[ext_resource type="Texture2D" uid="uid://b6o8wwx0kn4pb" path="res://sprites/particles/thruster.png" id="7_0v2uf"]
+[ext_resource type="Script" path="res://scripts/Engine.gd" id="8_riy5y"]
+[ext_resource type="AudioStream" uid="uid://cxx6re8a1nuuv" path="res://sounds/thruster_0.wav" id="9_u03bj"]
+[ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="10_jf807"]
+[ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="11_y1j5j"]
+[ext_resource type="Script" path="res://scripts/Shield.gd" id="12_8c2da"]
+[ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="13_i7oql"]
+[ext_resource type="PackedScene" uid="uid://c3be5suucqhdc" path="res://scenes/effects/destruction.tscn" id="14_3ms6c"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3sv6c"]
+diffuse_texture = ExtResource("4_71edl")
+normal_texture = ExtResource("5_cl3ht")
+specular_texture = ExtResource("6_vq3ct")
+specular_shininess = 0.25
+
+[sub_resource type="Gradient" id="Gradient_7hu33"]
+offsets = PackedFloat32Array(0, 0.582011, 0.986667)
+colors = PackedColorArray(1, 0.47451, 0, 1, 1, 1, 0.427451, 0.482353, 1, 1, 1, 0)
+
+[node name="Arbalest" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 7
+physics_material_override = ExtResource("1_eaiun")
+inertia = 1.0
+can_sleep = false
+freeze_mode = 1
+custom_integrator = true
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 0.75
+angular_damp = 0.75
+script = ExtResource("2_0alim")
+max_health = 10.0
+is_enemy = true
+max_linear_velocity = Vector2(300, 300)
+max_angular_velocity = 1.0
+max_control_linear_velocity = 500.0
+max_control_angular_velocity = 10.0
+destroy_time = 2.0
+destroy_explosion = ExtResource("3_0gg2a")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(32, -144, 81, -97, 105, 129, 98, 145, -97, 144, -105, 125, -80, -95, -32, -144)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_3sv6c")
+
+[node name="Engine" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(0, 130)
+amount = 30
+lifetime = 0.25
+texture = ExtResource("7_0v2uf")
+emission_shape = 3
+emission_rect_extents = Vector2(15, 0)
+direction = Vector2(0, 1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+damping_min = 100.0
+damping_max = 200.0
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_7hu33")
+script = ExtResource("8_riy5y")
+thrust_vector = Vector2(0, -1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Engine"]
+stream = ExtResource("9_u03bj")
+volume_db = -12.0
+pitch_scale = 1.4
+autoplay = true
+
+[node name="WeaponSlot" type="Node2D" parent="."]
+position = Vector2(-58, -80)
+script = ExtResource("10_jf807")
+
+[node name="Autocannon" parent="WeaponSlot" instance=ExtResource("11_y1j5j")]
+
+[node name="WeaponSlot2" type="Node2D" parent="."]
+position = Vector2(58, -80)
+script = ExtResource("10_jf807")
+
+[node name="Autocannon" parent="WeaponSlot2" instance=ExtResource("11_y1j5j")]
+
+[node name="Shield" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-32, -145, 33, -145, 82, -98, 107, 129, 99, 147, -97, 146, -105, 130, -81, -96)
+vertex_colors = PackedColorArray(0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0)
+script = ExtResource("12_8c2da")
+max_energy = 5.0
+recharge_delay = 3.0
+recharge_speed = 1.0
+flare_time = 1.0
+flare_warmup = 0.1
+gradient = ExtResource("13_i7oql")
+
+[node name="Destruction" parent="." instance=ExtResource("14_3ms6c")]

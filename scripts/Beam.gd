@@ -3,6 +3,7 @@ class_name Beam
 extends Line2D
 
 @export var fade: float
+@export var fire_sample_bank_name: String
 var remaining_fade: float
 var starting_width: float
 var light: PointLight2D
@@ -12,8 +13,8 @@ func _ready():
     starting_width = width
     light = get_node("PointLight2D")
     light.global_position = points[0]
-    # Sound
-    # Light?
+    
+    Globals.sample_manager.play_sample_at(fire_sample_bank_name, points[0], -12.0)
 
 func _process(delta):
     if remaining_fade <= 0.0:

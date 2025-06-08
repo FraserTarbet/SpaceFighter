@@ -31,8 +31,8 @@ func initiate_menu():
     music_player.stream = stream
     music_player.play()
 
-    var menu = menu_scene.instantiate()
-    add_child(menu)
+    # var menu = menu_scene.instantiate()
+    # add_child(menu)
 
 
 

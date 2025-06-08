@@ -39,4 +39,4 @@ func _process(delta):
 func start():
     light.visible = true
     particles.emitting = true
-    Globals.sample_manager.play_sample_at(sample_bank_name, global_position, -3.0 - (2.0 - size))
+    Globals.sample_manager.play_sample_at(sample_bank_name, global_position, 0.0 - (2.0 - size))

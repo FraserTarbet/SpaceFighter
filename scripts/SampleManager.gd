@@ -48,6 +48,13 @@ func _ready():
         ],
         'thruster': [
             ResourceLoader.load("res://sounds/thruster_0.wav")
+        ],
+        'laser_fire': [
+            ResourceLoader.load("res://sounds/laser_fire_0.wav"),
+            ResourceLoader.load("res://sounds/laser_fire_1.wav"),
+            ResourceLoader.load("res://sounds/laser_fire_2.wav"),
+            ResourceLoader.load("res://sounds/laser_fire_3.wav"),
+            ResourceLoader.load("res://sounds/laser_fire_4.wav")
         ]
     }
 
