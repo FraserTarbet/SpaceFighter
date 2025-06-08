@@ -36,7 +36,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_vd7fl")
 script = ExtResource("2_dwukk")
-ship_names = Array[String](["Kite", "Buzzard", "Condor"])
+ship_names = Array[String](["kite", "buzzard", "condor"])
 ship_textures = Array[CanvasTexture]([SubResource("CanvasTexture_ix8tw"), SubResource("CanvasTexture_xyfjw"), SubResource("CanvasTexture_b76hl")])
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]

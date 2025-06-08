@@ -3,6 +3,7 @@ extends Node2D
 @export var is_menu_background: bool = false
 @export var fade_in: float = 3.0
 @export var fade_out: float = 2.0
+@export var params: Dictionary
 
 var fade_in_remaining: float
 var fade_out_remaining: float
@@ -19,12 +20,14 @@ var ship_dict = {
 func _ready():
 	ships_parent = get_node("Ships")
 	fade_in_remaining = fade_in
+	if fade_in > 0.0:
+		modulate = Color(0, 0,0)
 	fade_out_remaining = fade_out
 	get_node("DirectionalLight2D").rotation = randf_range(0.0, 2 * PI)
 	if is_menu_background:
 		begin_menu_background()
 	else:
-		pass
+		begin()
 
 func _process(delta):
 	if is_menu_background:
@@ -45,7 +48,12 @@ func _process(delta):
 		else:
 			fade_out_remaining -= delta
 
-func spawn_ship(ship_type: String, is_enemy: bool):
+func spawn_player_ship(ship_type: String):
+	var ship = ship_dict[ship_type].instantiate()
+	ship.set_script(load("res://scripts/ShipPlayer.gd"))
+	ships_parent.add_child(ship)
+
+func spawn_AI_ship(ship_type: String):
 	var ship = ship_dict[ship_type].instantiate()
 	ship.rotate(randf_range(0.0, PI * 2))
 	ships_parent.add_child(ship)
@@ -59,16 +67,16 @@ func spawn_ship(ship_type: String, is_enemy: bool):
 
 func begin_menu_background():
 	if Globals.is_low_spec:
-		spawn_ship('condor', false)		
+		spawn_AI_ship('condor')		
 	else:
 		for i in range(3):
 			var r = randf()
 			if r > 0.8:
-				spawn_ship('condor', false)
+				spawn_AI_ship('condor')
 			elif r > 0.4:
-				spawn_ship('kite', false)
+				spawn_AI_ship('kite')
 			else:
-				spawn_ship('buzzard', false)
+				spawn_AI_ship('buzzard')
 	
 	Globals.camera.get_random_follow_ship()
 
@@ -77,32 +85,32 @@ func process_menu_background():
 		if ShipManager.enemy_ships.size() < 3:
 			var r  = randf()
 			if r >= 0.7:
-				spawn_ship('arbalest', true)
+				spawn_AI_ship('arbalest')
 			else:
-				spawn_ship('sentinel', true)
+				spawn_AI_ship('sentinel')
 		if ShipManager.friendly_ships.size() < 2:
 			var r = randf()
 			if r > 0.8:
-				spawn_ship('condor', false)
+				spawn_AI_ship('condor')
 			elif r > 0.4:
-				spawn_ship('kite', false)
+				spawn_AI_ship('kite')
 			else:
-				spawn_ship('buzzard', false)
+				spawn_AI_ship('buzzard')
 	else:
 		if ShipManager.enemy_ships.size() <= 4:
 			var r  = randf()
 			if r >= 0.7:
-				spawn_ship('arbalest', true)
+				spawn_AI_ship('arbalest')
 			else:
-				spawn_ship('sentinel', true)
+				spawn_AI_ship('sentinel')
 		if ShipManager.friendly_ships.size() <= 2:
 			var r = randf()
 			if r > 0.8:
-				spawn_ship('condor', false)
+				spawn_AI_ship('condor')
 			elif r > 0.4:
-				spawn_ship('kite', false)
+				spawn_AI_ship('kite')
 			else:
-				spawn_ship('buzzard', false)
+				spawn_AI_ship('buzzard')
 
 func start_fade_out():
 	fading_out = true
@@ -114,3 +122,8 @@ func end():
 	queue_free()
 
 	Globals.main.receive_close_complete()
+
+func begin():
+	if 'player_ship' in params:
+		add_child(PlayerControl.new())
+		spawn_player_ship(params['player_ship'])

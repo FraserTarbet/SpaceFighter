@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/DebugObjects.gd" id="1_3j23q"]
 [ext_resource type="Script" path="res://scripts/HUD.gd" id="1_mpw1q"]
-[ext_resource type="Script" path="res://scripts/Control.gd" id="1_wpel8"]
+[ext_resource type="Script" path="res://scripts/PlayerControl.gd" id="1_wpel8"]
 [ext_resource type="Script" path="res://scripts/SampleManager.gd" id="2_kouu5"]
 [ext_resource type="Script" path="res://scripts/ProjectileManager.gd" id="3_btjur"]
 [ext_resource type="Script" path="res://scripts/AmbientParallax.gd" id="3_x16bm"]

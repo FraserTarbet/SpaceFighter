@@ -1,3 +1,5 @@
+class_name PlayerControl
+
 extends Node2D
 
 var touch_velocities = {}
