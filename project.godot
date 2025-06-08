@@ -21,6 +21,11 @@ config/icon="res://icon.svg"
 Globals="*res://scripts/Globals.gd"
 ShipManager="*res://scripts/ShipManager.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [editor]
 
 movie_writer/movie_file="C:/Users/frase/Documents/Godot/movie.avi"

@@ -1,33 +1,33 @@
 [gd_scene load_steps=17 format=3 uid="uid://dpoblen2nmja5"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_p2ny4"]
-[ext_resource type="Script" path="res://scripts/ShipAI.gd" id="2_06cb2"]
-[ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/effects/explosion.tscn" id="3_0hbl7"]
-[ext_resource type="Texture2D" uid="uid://bqktgpfg0s7ih" path="res://sprites/ships/Mothership.png" id="4_xv53u"]
-[ext_resource type="Texture2D" uid="uid://dq4b3te5n82gy" path="res://sprites/ships/Mothership_n.png" id="5_6jydx"]
-[ext_resource type="Script" path="res://scripts/Engine.gd" id="6_2ie6j"]
-[ext_resource type="Texture2D" uid="uid://b6o8wwx0kn4pb" path="res://sprites/particles/thruster.png" id="6_wpwfk"]
-[ext_resource type="Script" path="res://scripts/Shield.gd" id="7_evb5x"]
-[ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="8_3w32g"]
-[ext_resource type="AudioStream" uid="uid://cxx6re8a1nuuv" path="res://sounds/thruster_0.wav" id="8_xdip4"]
-[ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="9_fo3cq"]
-[ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="10_tbni7"]
-[ext_resource type="PackedScene" uid="uid://bbiunchg5g6nw" path="res://scenes/weapons/laser.tscn" id="13_l8rug"]
-[ext_resource type="PackedScene" uid="uid://c3be5suucqhdc" path="res://scenes/effects/destruction.tscn" id="14_djfsf"]
+[ext_resource type="PhysicsMaterial" uid="uid://ci8bvqacgy5ip" path="res://materials/ship_default.tres" id="1_57gsm"]
+[ext_resource type="Script" path="res://scripts/ShipAI.gd" id="2_cvjgp"]
+[ext_resource type="PackedScene" uid="uid://wrptsleruqq1" path="res://scenes/effects/explosion.tscn" id="3_1l4my"]
+[ext_resource type="Texture2D" uid="uid://bqktgpfg0s7ih" path="res://sprites/ships/Condor.png" id="4_lmivi"]
+[ext_resource type="Texture2D" uid="uid://dq4b3te5n82gy" path="res://sprites/ships/Condor_n.png" id="5_3ow0w"]
+[ext_resource type="Texture2D" uid="uid://b6o8wwx0kn4pb" path="res://sprites/particles/thruster.png" id="6_xgpy6"]
+[ext_resource type="Script" path="res://scripts/Engine.gd" id="7_5mg11"]
+[ext_resource type="AudioStream" uid="uid://cxx6re8a1nuuv" path="res://sounds/thruster_0.wav" id="8_x6km4"]
+[ext_resource type="Script" path="res://scripts/Shield.gd" id="9_aymly"]
+[ext_resource type="Gradient" uid="uid://ddshrbclo08xm" path="res://gradients/shield_color_gradient.tres" id="10_7dr8v"]
+[ext_resource type="Script" path="res://scripts/WeaponSlot.gd" id="11_vermb"]
+[ext_resource type="PackedScene" uid="uid://dc0t8bgcu3226" path="res://scenes/weapons/autocannon.tscn" id="12_x22ab"]
+[ext_resource type="PackedScene" uid="uid://bbiunchg5g6nw" path="res://scenes/weapons/laser.tscn" id="13_p5pc5"]
+[ext_resource type="PackedScene" uid="uid://c3be5suucqhdc" path="res://scenes/effects/destruction.tscn" id="14_5t56i"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_hnmgy"]
-diffuse_texture = ExtResource("4_xv53u")
-normal_texture = ExtResource("5_6jydx")
+diffuse_texture = ExtResource("4_lmivi")
+normal_texture = ExtResource("5_3ow0w")
 
 [sub_resource type="Gradient" id="Gradient_6iolm"]
 offsets = PackedFloat32Array(0, 0.582011, 0.986667)
 colors = PackedColorArray(1, 0.47451, 0, 1, 1, 1, 0.427451, 0.482353, 1, 1, 1, 0)
 
-[node name="Mothership" type="RigidBody2D"]
+[node name="Condor" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 7
 mass = 20.0
-physics_material_override = ExtResource("1_p2ny4")
+physics_material_override = ExtResource("1_57gsm")
 inertia = 10.0
 can_sleep = false
 freeze_mode = 1
@@ -36,14 +36,14 @@ contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 0.25
 angular_damp = 0.75
-script = ExtResource("2_06cb2")
+script = ExtResource("2_cvjgp")
 max_health = 10.0
 max_linear_velocity = Vector2(200, 200)
 max_angular_velocity = 0.25
 max_control_linear_velocity = 300.0
 max_control_angular_velocity = 10.0
 destroy_time = 5.0
-destroy_explosion = ExtResource("3_0hbl7")
+destroy_explosion = ExtResource("3_1l4my")
 linear_drag = 50.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -57,7 +57,7 @@ z_index = -1
 position = Vector2(-70, 472)
 amount = 30
 lifetime = 0.25
-texture = ExtResource("6_wpwfk")
+texture = ExtResource("6_xgpy6")
 emission_shape = 3
 emission_rect_extents = Vector2(50, 10)
 direction = Vector2(0, 1)
@@ -69,11 +69,11 @@ damping_min = 100.0
 damping_max = 200.0
 scale_amount_min = 0.75
 color_ramp = SubResource("Gradient_6iolm")
-script = ExtResource("6_2ie6j")
+script = ExtResource("7_5mg11")
 thrust_vector = Vector2(0, -1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Engine"]
-stream = ExtResource("8_xdip4")
+stream = ExtResource("8_x6km4")
 volume_db = -12.0
 autoplay = true
 
@@ -82,7 +82,7 @@ z_index = -1
 position = Vector2(70, 472)
 amount = 30
 lifetime = 0.25
-texture = ExtResource("6_wpwfk")
+texture = ExtResource("6_xgpy6")
 emission_shape = 3
 emission_rect_extents = Vector2(50, 10)
 direction = Vector2(0, 1)
@@ -94,7 +94,7 @@ damping_min = 100.0
 damping_max = 200.0
 scale_amount_min = 0.75
 color_ramp = SubResource("Gradient_6iolm")
-script = ExtResource("6_2ie6j")
+script = ExtResource("7_5mg11")
 thrust_vector = Vector2(0, -1)
 
 [node name="Shield" type="Polygon2D" parent="."]
@@ -102,53 +102,53 @@ modulate = Color(1, 1, 1, 0.509804)
 position = Vector2(12, -78)
 polygon = PackedVector2Array(-12, -352, 43, -352, 69, -375, 118, -374, 119, -83, 193, -45, 193, 24, 122, 49, 122, 217, 149, 217, 232, 281, 232, 400, 183, 450, 138, 450, 138, 545, -160, 545, -160, 451, -206, 451, -257, 398, -257, 283, -174, 217, -146, 217, -146, 43, -215, 23, -215, -47, -144, -88, -143, -372, -93, -372, -67, -352)
 vertex_colors = PackedColorArray(0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0.0117647, 0.928201, 0.870718, 0.764062, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0.00392157, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0)
-script = ExtResource("7_evb5x")
+script = ExtResource("9_aymly")
 max_energy = 250.0
 recharge_delay = 10.0
 recharge_speed = 5.0
 flare_time = 0.5
 flare_warmup = 0.1
-gradient = ExtResource("8_3w32g")
+gradient = ExtResource("10_7dr8v")
 
 [node name="WeaponSlot" type="Node2D" parent="."]
 position = Vector2(-64, -360)
-script = ExtResource("9_fo3cq")
+script = ExtResource("11_vermb")
 
-[node name="Autocannon" parent="WeaponSlot" instance=ExtResource("10_tbni7")]
+[node name="Autocannon" parent="WeaponSlot" instance=ExtResource("12_x22ab")]
 
 [node name="WeaponSlot2" type="Node2D" parent="."]
 position = Vector2(64, -360)
-script = ExtResource("9_fo3cq")
+script = ExtResource("11_vermb")
 
-[node name="Laser" parent="WeaponSlot2" instance=ExtResource("13_l8rug")]
+[node name="Laser" parent="WeaponSlot2" instance=ExtResource("13_p5pc5")]
 
 [node name="WeaponSlot3" type="Node2D" parent="."]
 position = Vector2(-64, 32)
 rotation = -0.785398
-script = ExtResource("9_fo3cq")
+script = ExtResource("11_vermb")
 
-[node name="Laser" parent="WeaponSlot3" instance=ExtResource("13_l8rug")]
+[node name="Laser" parent="WeaponSlot3" instance=ExtResource("13_p5pc5")]
 
 [node name="WeaponSlot4" type="Node2D" parent="."]
 position = Vector2(64, 32)
 rotation = 0.785398
-script = ExtResource("9_fo3cq")
+script = ExtResource("11_vermb")
 
-[node name="Laser" parent="WeaponSlot4" instance=ExtResource("13_l8rug")]
+[node name="Laser" parent="WeaponSlot4" instance=ExtResource("13_p5pc5")]
 
 [node name="WeaponSlot5" type="Node2D" parent="."]
 position = Vector2(-168, 325)
 rotation = -1.5708
-script = ExtResource("9_fo3cq")
+script = ExtResource("11_vermb")
 
-[node name="Autocannon" parent="WeaponSlot5" instance=ExtResource("10_tbni7")]
+[node name="Autocannon" parent="WeaponSlot5" instance=ExtResource("12_x22ab")]
 
 [node name="WeaponSlot6" type="Node2D" parent="."]
 position = Vector2(169, 325)
 rotation = 1.5708
-script = ExtResource("9_fo3cq")
+script = ExtResource("11_vermb")
 
-[node name="Autocannon" parent="WeaponSlot6" instance=ExtResource("10_tbni7")]
+[node name="Autocannon" parent="WeaponSlot6" instance=ExtResource("12_x22ab")]
 
-[node name="Destruction" parent="." instance=ExtResource("14_djfsf")]
+[node name="Destruction" parent="." instance=ExtResource("14_5t56i")]
 shard_count = 40

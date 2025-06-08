@@ -2,11 +2,14 @@ extends Node2D
 
 @export var is_menu_background: bool = false
 @export var fade_in: float = 3.0
+@export var fade_out: float = 2.0
 
 var fade_in_remaining: float
+var fade_out_remaining: float
+var fading_out: bool = false
 var ships_parent
 var ship_dict = {
-	'mothership': preload("res://scenes/ships/mothership.tscn"),
+	'condor': preload("res://scenes/ships/condor.tscn"),
 	'kite': preload("res://scenes/ships/kite.tscn"),
 	'buzzard': preload("res://scenes/ships/buzzard.tscn"),
 	'sentinel': preload("res://scenes/ships/sentinel.tscn"),
@@ -16,6 +19,7 @@ var ship_dict = {
 func _ready():
 	ships_parent = get_node("Ships")
 	fade_in_remaining = fade_in
+	fade_out_remaining = fade_out
 	get_node("DirectionalLight2D").rotation = randf_range(0.0, 2 * PI)
 	if is_menu_background:
 		begin_menu_background()
@@ -33,6 +37,14 @@ func _process(delta):
 
 	fade_in_remaining = max(fade_in_remaining - delta, 0.0)
 
+	if fading_out:
+		fade = fade_out_remaining / fade_out
+		modulate = Color(fade, fade, fade)
+		if fade_out_remaining <= 0.0:
+			end()
+		else:
+			fade_out_remaining -= delta
+
 func spawn_ship(ship_type: String, is_enemy: bool):
 	var ship = ship_dict[ship_type].instantiate()
 	ship.rotate(randf_range(0.0, PI * 2))
@@ -47,12 +59,12 @@ func spawn_ship(ship_type: String, is_enemy: bool):
 
 func begin_menu_background():
 	if Globals.is_low_spec:
-		spawn_ship('mothership', false)		
+		spawn_ship('condor', false)		
 	else:
 		for i in range(3):
 			var r = randf()
 			if r > 0.8:
-				spawn_ship('mothership', false)
+				spawn_ship('condor', false)
 			elif r > 0.4:
 				spawn_ship('kite', false)
 			else:
@@ -71,7 +83,7 @@ func process_menu_background():
 		if ShipManager.friendly_ships.size() < 2:
 			var r = randf()
 			if r > 0.8:
-				spawn_ship('mothership', false)
+				spawn_ship('condor', false)
 			elif r > 0.4:
 				spawn_ship('kite', false)
 			else:
@@ -86,8 +98,19 @@ func process_menu_background():
 		if ShipManager.friendly_ships.size() <= 2:
 			var r = randf()
 			if r > 0.8:
-				spawn_ship('mothership', false)
+				spawn_ship('condor', false)
 			elif r > 0.4:
 				spawn_ship('kite', false)
 			else:
 				spawn_ship('buzzard', false)
+
+func start_fade_out():
+	fading_out = true
+
+func end():
+	ShipManager.clear()
+	for ship in ships_parent.get_children():
+		ship.reset_state()
+	queue_free()
+
+	Globals.main.receive_close_complete()

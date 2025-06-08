@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqktgpfg0s7ih"
-path.s3tc="res://.godot/imported/Mothership.png-6733378934d23b057ffc0c6d71474442.s3tc.ctex"
-path.etc2="res://.godot/imported/Mothership.png-6733378934d23b057ffc0c6d71474442.etc2.ctex"
+path="res://.godot/imported/Condor.png-c2f884f6db4903a0bf46ee3c3f54a447.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ships/Mothership.png"
-dest_files=["res://.godot/imported/Mothership.png-6733378934d23b057ffc0c6d71474442.s3tc.ctex", "res://.godot/imported/Mothership.png-6733378934d23b057ffc0c6d71474442.etc2.ctex"]
+source_file="res://sprites/ships/Condor.png"
+dest_files=["res://.godot/imported/Condor.png-c2f884f6db4903a0bf46ee3c3f54a447.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

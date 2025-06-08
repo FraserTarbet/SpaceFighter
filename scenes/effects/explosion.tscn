@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://wrptsleruqq1"]
 
 [ext_resource type="Script" path="res://scripts/Explosion.gd" id="1_78q4r"]
-[ext_resource type="Texture2D" uid="uid://b6o8wwx0kn4pb" path="res://sprites/particles/thruster.png" id="2_1fs7u"]
 [ext_resource type="Texture2D" uid="uid://2ky8simjv8mw" path="res://sprites/lights/round.png" id="2_asfuj"]
+[ext_resource type="Texture2D" uid="uid://da451erp3xr41" path="res://sprites/particles/explosion.png" id="2_qoxmf"]
 
 [sub_resource type="Gradient" id="Gradient_0ni38"]
-offsets = PackedFloat32Array(0, 0.174603, 0.449735, 0.68254, 0.862434)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0.00784314, 1, 1, 0.454902, 0, 1, 0.588235, 0.588235, 0.588235, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.037037, 0.174603, 0.449735, 0.68254, 0.862434)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0.00784314, 1, 1, 0.454902, 0, 1, 0.588235, 0.588235, 0.588235, 1, 1, 1, 1, 0)
 
 [node name="Explosion" type="Node2D"]
 script = ExtResource("1_78q4r")
@@ -16,8 +16,8 @@ sample_bank_name = "explosion"
 emitting = false
 amount = 16
 one_shot = true
-explosiveness = 0.7
-texture = ExtResource("2_1fs7u")
+explosiveness = 0.8
+texture = ExtResource("2_qoxmf")
 emission_shape = 1
 emission_sphere_radius = 20.0
 spread = 180.0
@@ -26,6 +26,10 @@ initial_velocity_min = 10.0
 initial_velocity_max = 15.0
 angular_velocity_min = -100.0
 angular_velocity_max = 100.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.05
+scale_amount_max = 0.25
 color_ramp = SubResource("Gradient_0ni38")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

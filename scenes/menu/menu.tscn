@@ -7,7 +7,6 @@
 script = ExtResource("1_gchje")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -37,16 +36,16 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/margin_bottom = 10
 
-[node name="ButtonStartGame" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/MarginContainer"]
+[node name="StartGame" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Start game"
-flat = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 10
 
-[node name="ButtonHowToPlay" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/MarginContainer2"]
+[node name="HowToPlay" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "How to Play"
-flat = true

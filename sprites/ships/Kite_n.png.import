@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://da1gu5p3d711j"
-path.s3tc="res://.godot/imported/Kite_n.png-25099253052811bc382194d34bc7791a.s3tc.ctex"
-path.etc2="res://.godot/imported/Kite_n.png-25099253052811bc382194d34bc7791a.etc2.ctex"
+path="res://.godot/imported/Kite_n.png-25099253052811bc382194d34bc7791a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://sprites/ships/Kite_n.png"
-dest_files=["res://.godot/imported/Kite_n.png-25099253052811bc382194d34bc7791a.s3tc.ctex", "res://.godot/imported/Kite_n.png-25099253052811bc382194d34bc7791a.etc2.ctex"]
+dest_files=["res://.godot/imported/Kite_n.png-25099253052811bc382194d34bc7791a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

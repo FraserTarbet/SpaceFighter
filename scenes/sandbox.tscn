@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://baoyag8lqkqsw" path="res://sprites/ambient/dust_speck.png" id="4_rmevt"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="5_7pil6"]
 [ext_resource type="Texture2D" uid="uid://c7uin5s570yqf" path="res://sprites/ambient/cloud_1.png" id="5_8x8k0"]
-[ext_resource type="PackedScene" uid="uid://dpoblen2nmja5" path="res://scenes/ships/mothership.tscn" id="11_ypbvp"]
+[ext_resource type="PackedScene" uid="uid://dpoblen2nmja5" path="res://scenes/ships/condor.tscn" id="11_ypbvp"]
 [ext_resource type="PackedScene" uid="uid://bfrffo2rdpiw2" path="res://scenes/ships/enemy_ship.tscn" id="12_15425"]
 [ext_resource type="PackedScene" uid="uid://sl4k6ofqk1e0" path="res://scenes/ships/buzzard.tscn" id="12_g4blv"]
 

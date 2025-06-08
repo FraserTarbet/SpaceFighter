@@ -198,3 +198,9 @@ func get_ships_in_range(weapon: Weapon):
 			ships_in_range.append(ship)
 
 	return ships_in_range
+
+func clear():
+	ships = []
+	friendly_ships = []
+	enemy_ships = []
+	ship_attackers = {}

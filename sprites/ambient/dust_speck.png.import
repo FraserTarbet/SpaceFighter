@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://baoyag8lqkqsw"
-path.s3tc="res://.godot/imported/dust_speck.png-badfdb1adb1067701dc75962b960c843.s3tc.ctex"
-path.etc2="res://.godot/imported/dust_speck.png-badfdb1adb1067701dc75962b960c843.etc2.ctex"
+path="res://.godot/imported/dust_speck.png-badfdb1adb1067701dc75962b960c843.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://sprites/ambient/dust_speck.png"
-dest_files=["res://.godot/imported/dust_speck.png-badfdb1adb1067701dc75962b960c843.s3tc.ctex", "res://.godot/imported/dust_speck.png-badfdb1adb1067701dc75962b960c843.etc2.ctex"]
+dest_files=["res://.godot/imported/dust_speck.png-badfdb1adb1067701dc75962b960c843.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

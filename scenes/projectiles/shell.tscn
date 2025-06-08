@@ -30,6 +30,7 @@ hit_explosion_size = 0.25
 shape = SubResource("CapsuleShape2D_bmdhx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = SubResource("CanvasTexture_jji0x")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

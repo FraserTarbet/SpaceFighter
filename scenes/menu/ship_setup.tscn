@@ -1,0 +1,142 @@
+[gd_scene load_steps=13 format=3 uid="uid://gnumna1b4n6i"]
+
+[ext_resource type="Texture2D" uid="uid://bqktgpfg0s7ih" path="res://sprites/ships/Condor.png" id="1_txtk5"]
+[ext_resource type="Theme" uid="uid://bpq6ma1dbtjyx" path="res://theme.tres" id="1_vd7fl"]
+[ext_resource type="Script" path="res://scripts/ShipSetup.gd" id="2_dwukk"]
+[ext_resource type="Texture2D" uid="uid://dq4b3te5n82gy" path="res://sprites/ships/Condor_n.png" id="2_luhpw"]
+[ext_resource type="Texture2D" uid="uid://dkgqaloq33jh8" path="res://sprites/ships/Kite.png" id="3_xwulj"]
+[ext_resource type="Texture2D" uid="uid://da1gu5p3d711j" path="res://sprites/ships/Kite_n.png" id="4_wqwgt"]
+[ext_resource type="Texture2D" uid="uid://ccvhh2nfk13iu" path="res://sprites/ships/Buzzard.png" id="5_hiutr"]
+[ext_resource type="Texture2D" uid="uid://c7ebood2g6776" path="res://sprites/ships/Buzzard_n.png" id="6_oenps"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ix8tw"]
+diffuse_texture = ExtResource("3_xwulj")
+normal_texture = ExtResource("4_wqwgt")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xyfjw"]
+diffuse_texture = ExtResource("5_hiutr")
+normal_texture = ExtResource("6_oenps")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_b76hl"]
+diffuse_texture = ExtResource("1_txtk5")
+normal_texture = ExtResource("2_luhpw")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_w260s"]
+diffuse_texture = ExtResource("3_xwulj")
+normal_texture = ExtResource("4_wqwgt")
+
+[node name="ShipSetup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_vd7fl")
+script = ExtResource("2_dwukk")
+ship_names = Array[String](["Kite", "Buzzard", "Condor"])
+ship_textures = Array[CanvasTexture]([SubResource("CanvasTexture_ix8tw"), SubResource("CanvasTexture_xyfjw"), SubResource("CanvasTexture_b76hl")])
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = 0.785398
+height = 0.5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 177.0
+offset_bottom = 66.0
+text = "Select Ship"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0.964706)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ShipTexture" type="TextureRect" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+texture = SubResource("CanvasTexture_w260s")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -108.0
+offset_right = 200.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Prev" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<"
+
+[node name="ShipName" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ShipName
+"
+horizontal_alignment = 1
+
+[node name="Next" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ">"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -108.0
+offset_right = 164.0
+offset_bottom = -47.0
+grow_vertical = 0
+text = "Back"
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -108.0
+offset_right = -39.0
+offset_bottom = -47.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Start"
