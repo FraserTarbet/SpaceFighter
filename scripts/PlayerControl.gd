@@ -23,6 +23,13 @@ func _input(event):
     if event is InputEventScreenDrag or event is InputEventScreenTouch:
         touch(event)
 
+    if event is InputEventMouseButton:
+        if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+            Globals.camera.target_zoom = Globals.camera.target_zoom * 1.2
+        elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+            Globals.camera.target_zoom = Globals.camera.target_zoom * 0.8
+
+
 func _process(_delta):
     if Globals.player_ship != null:
         max_linear_velocity = Globals.player_ship.max_control_linear_velocity

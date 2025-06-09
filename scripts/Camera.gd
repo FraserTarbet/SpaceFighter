@@ -2,7 +2,7 @@ extends Camera2D
 
 @export var follow_ship: Ship
 var target_zoom = zoom
-var min_zoom = Vector2(0.2, 0.2)
+var min_zoom = Vector2(0.1, 0.1)
 var max_zoom = Vector2(1.8, 1.8)
 
 func _ready():
