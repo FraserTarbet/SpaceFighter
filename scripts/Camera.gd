@@ -10,7 +10,10 @@ func _ready():
 
 func _process(delta):
 	if not is_instance_valid(follow_ship):
-		get_random_follow_ship()
+		if is_instance_valid(Globals.player_ship):
+			follow_ship = Globals.player_ship
+		else:
+			get_random_follow_ship()
 	var target = follow_ship.position
 	position = lerp(position, target, 0.85 * delta)
 

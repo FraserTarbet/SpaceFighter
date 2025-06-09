@@ -27,13 +27,13 @@ func _ready():
 	if is_menu_background:
 		begin_menu_background()
 	else:
-		begin()
+		begin_level()
 
 func _process(delta):
 	if is_menu_background:
 		process_menu_background()
 	else:
-		pass
+		process_level()
 
 	var fade: float = 1.0 - (fade_in_remaining / fade_in)
 	modulate = Color(fade, fade, fade)
@@ -61,6 +61,7 @@ func spawn_player_ship(ship_type: String):
 			ship.set(property['name'], property_dict[property['name']])
 	ships_parent.add_child(ship)
 	Globals.player_ship = ship
+	ship.player_death.connect(game_over)
 
 func spawn_AI_ship(ship_type: String):
 	var ship = ship_dict[ship_type].instantiate()
@@ -71,7 +72,6 @@ func spawn_AI_ship(ship_type: String):
 	ship.position = Globals.camera.position + vector
 
 	return ship
-
 	# Check placement
 
 func begin_menu_background():
@@ -127,12 +127,28 @@ func start_fade_out():
 func end():
 	ShipManager.clear()
 	for ship in ships_parent.get_children():
-		ship.reset_state()
+		if ship is ShipAI:
+			ship.reset_state()
 	queue_free()
-
 	Globals.main.receive_close_complete()
 
-func begin():
+func game_over():
+	ShipManager.clear()
+	for ship in ships_parent.get_children():
+		if ship is ShipAI:
+			ship.reset_state()
+	queue_free()
+	Globals.main.initiate_start()
+
+func begin_level():
 	if 'player_ship' in params:
 		add_child(PlayerControl.new())
 		spawn_player_ship(params['player_ship'])
+
+func process_level():
+	if ShipManager.enemy_ships.size() < 2:
+		var r = randf()
+		if r > 0.6:
+			spawn_AI_ship('arbalest')
+		else:
+			spawn_AI_ship('sentinel')

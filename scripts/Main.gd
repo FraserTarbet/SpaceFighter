@@ -5,6 +5,7 @@ var start_screen_scene: PackedScene = load("res://scenes/start.tscn")
 var level_scene: PackedScene = load("res://scenes/level.tscn")
 var menu_scene: PackedScene = load("res://scenes/menu/menu.tscn")
 var ship_setup_scene: PackedScene = load("res://scenes/menu/ship_setup.tscn")
+var hud_scene: PackedScene = load("res://scenes/HUD.tscn")
 
 var music_streams = {
     'A': ResourceLoader.load("res://music/SpaceFighter_A.mp3")
@@ -17,6 +18,13 @@ var level_params = {}
 
 func _ready():
     Globals.main = self
+    initiate_start()
+
+func initiate_start():
+    var hud = get_node_or_null("HUD")
+    if hud != null:
+        hud.queue_free()
+        
     state = 'start'
     music_player = get_node("MusicPlayer")
     max_music_volume = music_player.volume_db
@@ -78,6 +86,9 @@ func initiate_level():
     level.is_menu_background = false
     level.params = level_params
     add_child(level)
+
+    var hud = hud_scene.instantiate()
+    add_child(hud)
 
 func set_music_volume(percent: float):
     music_player.volume_db = lerpf(-60.0, max_music_volume, percent)

@@ -15,6 +15,7 @@ func _ready():
 		
 
 func _process(_delta):
-	var player_ship = Globals.player_ship
-	health_bar.value = (player_ship.health / player_ship.max_health) * 100
-	shield_bar.value = (player_ship.shield.energy / player_ship.shield.max_energy) * 100
+	if is_instance_valid(Globals.player_ship):
+		var player_ship = Globals.player_ship
+		health_bar.value = (player_ship.health / player_ship.max_health) * 100
+		shield_bar.value = (player_ship.shield.energy / player_ship.shield.max_energy) * 100

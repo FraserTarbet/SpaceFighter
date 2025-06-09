@@ -2,6 +2,8 @@ extends Ship
 
 var dead_zone_angle = PI / 24.0
 
+signal player_death
+
 func _ready():
     # Don't think this runs when script is added to an existing node.
 	super()
@@ -23,3 +25,6 @@ func rotate_to_target(rotation_target: Vector2):
 		else:
 			control_angular_velocity = -max_control_angular_velocity if angle_to_target < 0.0 else max_control_angular_velocity
 
+func destroy():
+	super()
+	player_death.emit()

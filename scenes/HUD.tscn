@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl4li7wjqiq0r"]
+
+[ext_resource type="Script" path="res://scripts/HUD.gd" id="1_1a1cu"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="HUDControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+script = ExtResource("1_1a1cu")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUDControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUDControl/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="ShieldBar" type="ProgressBar" parent="HUDControl/MarginContainer/VBoxContainer"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 12
+value = 100.0
+
+[node name="HealthBar" type="ProgressBar" parent="HUDControl/MarginContainer/VBoxContainer"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+value = 100.0
