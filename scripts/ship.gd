@@ -111,7 +111,7 @@ func _integrate_forces(state):
 			continue
 		else:
 			var impulse_direction = normal.normalized()
-			var impulse = impulse_direction * (relative_velocity.length()) * 1.5 # Look at this - use relative masses?
+			var impulse = impulse_direction * (relative_velocity.length()) * 0.5 # Look at this - use relative masses?
 			state.apply_impulse(impulse, Vector2.ZERO)
 
 func get_stopping_distance():

@@ -29,7 +29,7 @@ angular_velocity_max = 100.0
 angle_min = -180.0
 angle_max = 180.0
 scale_amount_min = 0.05
-scale_amount_max = 0.25
+scale_amount_max = 0.2
 color_ramp = SubResource("Gradient_0ni38")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

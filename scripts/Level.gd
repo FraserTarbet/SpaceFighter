@@ -50,8 +50,17 @@ func _process(delta):
 
 func spawn_player_ship(ship_type: String):
 	var ship = ship_dict[ship_type].instantiate()
+
+	# Need to reset properties when switching out the script - not the best approach...
+	var property_dict = {}
+	for property in ship.get_property_list():
+		property_dict[property['name']] = ship.get(property['name'])
 	ship.set_script(load("res://scripts/ShipPlayer.gd"))
+	for property in ship.get_property_list():
+		if property['name'] in property_dict.keys():
+			ship.set(property['name'], property_dict[property['name']])
 	ships_parent.add_child(ship)
+	Globals.player_ship = ship
 
 func spawn_AI_ship(ship_type: String):
 	var ship = ship_dict[ship_type].instantiate()

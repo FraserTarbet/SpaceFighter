@@ -19,46 +19,45 @@ var max_angular_velocity
 
 var touch_start_position = null
 
-func _ready():
-    await get_tree().process_frame
-    max_linear_velocity = Globals.player_ship.max_control_linear_velocity
-    max_angular_velocity = Globals.player_ship.max_control_angular_velocity
-
 func _input(event):
     if event is InputEventScreenDrag or event is InputEventScreenTouch:
         touch(event)
 
 func _process(_delta):
-    if touch_start_position == null:
+    if Globals.player_ship != null:
+        max_linear_velocity = Globals.player_ship.max_control_linear_velocity
+        max_angular_velocity = Globals.player_ship.max_control_angular_velocity
 
-        # Ship movement
-        var x = 0.0
-        var y = 0.0
-        var angular = 0.0
+        if touch_start_position == null:
 
-        if Input.is_action_pressed("move_left"):
-            x = -max_linear_velocity
-        elif Input.is_action_pressed("move_right"):
-            x = max_linear_velocity
+            # Ship movement
+            var x = 0.0
+            var y = 0.0
+            var angular = 0.0
 
-        if Input.is_action_pressed("move_up"):
-            y = -max_linear_velocity
-        elif Input.is_action_pressed("move_down"):
-            y = max_linear_velocity
+            if Input.is_action_pressed("move_left"):
+                x = -max_linear_velocity
+            elif Input.is_action_pressed("move_right"):
+                x = max_linear_velocity
 
-        if Input.is_action_pressed("rotate_anticlockwise"):
-            angular = -max_angular_velocity
-        elif Input.is_action_pressed("rotate_clockwise"):
-            angular = max_angular_velocity
+            if Input.is_action_pressed("move_up"):
+                y = -max_linear_velocity
+            elif Input.is_action_pressed("move_down"):
+                y = max_linear_velocity
 
-        Globals.player_ship.control_linear_velocity = Vector2(x, y)
-        Globals.player_ship.control_angular_velocity = angular
+            if Input.is_action_pressed("rotate_anticlockwise"):
+                angular = -max_angular_velocity
+            elif Input.is_action_pressed("rotate_clockwise"):
+                angular = max_angular_velocity
 
-        # Zoom
-        if Input.is_action_pressed("zoom_in"):
-            Globals.camera.target_zoom = Globals.camera.target_zoom * 1.05
-        elif Input.is_action_pressed("zoom_out"):
-            Globals.camera.target_zoom = Globals.camera.target_zoom * 0.95
+            Globals.player_ship.control_linear_velocity = Vector2(x, y)
+            Globals.player_ship.control_angular_velocity = angular
+
+            # Zoom
+            if Input.is_action_pressed("zoom_in"):
+                Globals.camera.target_zoom = Globals.camera.target_zoom * 1.05
+            elif Input.is_action_pressed("zoom_out"):
+                Globals.camera.target_zoom = Globals.camera.target_zoom * 0.95
 
 
 func touch(event):

@@ -24,7 +24,7 @@ flash_fade_time = 0.1
 fire_sample_bank_name = "shell_fire"
 hit_sample_bank_name = "shell_hit"
 explosion_scene = ExtResource("2_pxhs3")
-hit_explosion_size = 0.25
+hit_explosion_size = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_bmdhx")
