@@ -57,7 +57,7 @@ func spawn_player_ship(ship_type: String):
 		property_dict[property['name']] = ship.get(property['name'])
 	ship.set_script(load("res://scripts/ShipPlayer.gd"))
 	for property in ship.get_property_list():
-		if property['name'] in property_dict.keys():
+		if property['name'] in property_dict.keys() and property['name'] != 'script':
 			ship.set(property['name'], property_dict[property['name']])
 	ships_parent.add_child(ship)
 	Globals.player_ship = ship

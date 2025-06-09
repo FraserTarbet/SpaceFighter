@@ -45,6 +45,7 @@ max_control_angular_velocity = 10.0
 destroy_time = 5.0
 destroy_explosion = ExtResource("3_1l4my")
 linear_drag = 50.0
+angular_drag = 0.01
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -425, 58, -425, 82, -448, 128, -448, 128, -158, 201, -122, 201, -56, 130, -32, 131, 143, 161, 143, 240, 205, 240, 320, 193, 368, 145, 368, 145, 463, -144, 463, -144, 369, -193, 369, -241, 319, -241, 207, -160, 143, -130, 143, -130, -40, -200, -57, -200, -122, -128, -164, -128, -448, -81, -448, -57, -425)

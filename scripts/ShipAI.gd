@@ -61,8 +61,6 @@ func move_to_target_position():
 func rotate_to_target():
 	var firing_offset = preferred_fire_vector.angle() + (PI / 2)
 	var target_vector = (rotation_target - position).rotated(-firing_offset)
-	# if name == 'Mothership':
-	# 	print(firing_offset)
 	var angle_to_target = Vector2.UP.rotated(rotation).angle_to(target_vector)
 	var move_vector = target_position - position
 
